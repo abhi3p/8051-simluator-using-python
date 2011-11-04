@@ -1,4 +1,7 @@
 #!/usr/bin/python
+from pylab import *
+
+
 class BaseClass8051:
 	"""The base class of 8051 which consists of all common data types and functions used for the simulator"""
 	ROM=[hex(0)]*65536
@@ -17,7 +20,10 @@ class BaseClass8051:
 	PSW=bin(0)+'0000000'
 	PC=0
 	DPTR_cntr=0
-	
+	ROW=[hex(255)]*2
+	COL=[hex(255)]*2
+	MEM=array([ROW,COL])
+
 	def hex2bin(self,hexa):
 		""" Function to convert from hex to binary"""
 		bina=bin(int(hexa, 16))
