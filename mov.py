@@ -7,6 +7,7 @@ def OP_74(pcntr):
 #	UC.PC=pcntr			Why is PC required? we are anywaz passing pcntr!! Need to discuss this
 	pcntr=pcntr+1
 	UC.A=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_75(pcntr):
@@ -22,48 +23,56 @@ def OP_78(pcntr):
 	""" MOV R0, #data"""
 	pcntr=pcntr+1
 	UC.R0=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_79(pcntr):
 	""" MOV R1, #data"""
 	pcntr=pcntr+1
 	UC.R1=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_7A(pcntr):
 	""" MOV R2, #data"""
 	pcntr=pcntr+1
 	UC.R3=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_7B(pcntr):
 	""" MOV R3, #data"""
 	pcntr=pcntr+1
 	UC.R3=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_7C(pcntr):
 	""" MOV R4, #data"""
 	pcntr=pcntr+1
 	UC.R4=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_7D(pcntr):
 	""" MOV R5, #data"""
 	pcntr=pcntr+1
 	UC.R5=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_7E(pcntr):
 	""" MOV R6, #data"""
 	pcntr=pcntr+1
 	UC.R6=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_7F(pcntr):
 	""" MOV R7, #data"""
 	pcntr=pcntr+1
 	UC.R7=UC.ROM[pcntr]
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_83(pcntr):
@@ -85,6 +94,7 @@ def OP_88(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R0
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_89(pcntr):
@@ -94,6 +104,7 @@ def OP_89(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R1
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_8A(pcntr):
@@ -103,6 +114,7 @@ def OP_8A(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R2
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_8B(pcntr):
@@ -112,6 +124,7 @@ def OP_8B(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R3
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_8C(pcntr):
@@ -121,6 +134,7 @@ def OP_8C(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R4
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_8D(pcntr):
@@ -130,6 +144,7 @@ def OP_8D(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R5
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_8E(pcntr):
@@ -139,6 +154,7 @@ def OP_8E(pcntr):
 	pcntr=pcntr+1
 	row=UC.hex2dec(UC.ROM[pcntr])
 	UC.MEM[row,colmn]=UC.R6
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_8F(pcntr):
@@ -152,6 +168,7 @@ def OP_8F(pcntr):
 	print row
 	print colmn
 	print UC.MEM[row,colmn]
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_90(pcntr):
@@ -215,46 +232,55 @@ def OP_E7(pcntr):
 def OP_E8(pcntr):
 	""" MOV A,R0"""
 	UC.A = UC.R0
+	pcntr=pcntr+1
 	return(pcntr)
 
 
 def OP_E9(pcntr):
 	""" MOV A,R1"""
 	UC.A = UC.R1
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_EA(pcntr):
 	""" MOV A,R2"""
 	UC.A = UC.R2
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_Eb(pcntr):
 	""" MOV A,R3"""
 	UC.A = UC.R3
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_EC(pcntr):
 	""" MOV A,R4"""
 	UC.A = UC.R4
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_ED(pcntr):
 	""" MOV A,R5"""
 	UC.A = UC.R5
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_EE(pcntr):
 	""" MOV A,R6"""
 	UC.A = UC.R6
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_EF(pcntr):
 	""" MOV A,R7"""
 	UC.A = UC.R7
+	pcntr=pcntr+1
 	return(pcntr)
 
 def OP_F0(pcntr):
 	"""MOVX @DPTR,A"""
+	
 
 def OP_F2(pcntr):
 	"""MOVX @R0,A"""
@@ -274,35 +300,56 @@ def OP_F7(pcntr):
 def OP_F8(pcntr):
 	"""MOV R0,A"""
 	UC.R0=UC.A
+	pcntr=pcntr+1
 	return pcntr
 
 def OP_F9(pcntr):
 	"""MOV R1,A"""
 	UC.R1=UC.A
+	pcntr=pcntr+1
+	return pcntr
 
 def OP_FA(pcntr):
 	"""MOV R2,A"""
 	UC.R2=UC.A
+	pcntr=pcntr+1
+	return pcntr
+
 
 def OP_FB(pcntr):
 	"""MOV R3,A"""
 	UC.R3=UC.A
+	pcntr=pcntr+1
+	return pcntr
+
 
 def OP_FC(pcntr):
 	"""MOV R4,A"""
 	UC.R4=UC.A
+	pcntr=pcntr+1
+	return pcntr
+
 
 def OP_FD(pcntr):
 	"""MOV R5,A"""
 	UC.R5=UC.A
+	pcntr=pcntr+1
+	return pcntr
+
 
 def OP_FE(pcntr):
 	"""MOV R6,A"""
 	UC.R6=UC.A
+	pcntr=pcntr+1
+	return pcntr
+
 
 def OP_FF(pcntr):
 	"""MOV R7,A"""
 	UC.R7=UC.A
+	pcntr=pcntr+1
+	return pcntr
+
 
 
 	
