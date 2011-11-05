@@ -70,7 +70,7 @@ def OP_83(pcntr):
 	""" MOVC A,@A+PC"""
 
 def OP_85(pcntr):
-	""" MOV dataaddr, data addr"""
+	""" MOV dataaddr, dataaddr"""
 
 def OP_86(pcntr):
 	""" MOV dataaddr, @R0"""
