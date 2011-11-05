@@ -5,7 +5,7 @@ from pylab import *
 class BaseClass8051:
 	"""The base class of 8051 which consists of all common data types and functions used for the simulator"""
 	ROM=[hex(0)]*65536
-	DPTR=[0]*65536
+	DPTR=[0]*65536 ?? discuss 
 	A=hex(0)
 	R0=hex(0)
 	R1=hex(0)
@@ -62,7 +62,7 @@ class BaseClass8051:
 		return hexa
 			 
 	def decr(self,decra,n):
-		""" Increment any thing by anything"""
+		""" Decrement any thing by anything"""
 		deca=self.hex2dec(incra)
 		deca=deca-n
 		hexa=self.dec2hex(deca)
