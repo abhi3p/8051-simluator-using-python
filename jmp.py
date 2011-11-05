@@ -80,40 +80,40 @@ def OP_40(pcntr):
 	"""JC 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+offset
+	pcntr=pcntr+UC.hex2dec(offset)
 	return pcntr
 
 def OP_50(pcntr):
 	"""JNC 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+offset
+	pcntr=pcntr+UC.hex2dec(offset)
 	return pcntr
 
 def OP_60(pcntr):
 	"""JZ 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+offset
+	pcntr=pcntr+UC.hex2dec(offset)
 	return pcntr
 
 def OP_70(pcntr):
 	"""JNZ 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+offset
+	pcntr=pcntr+UC.hex2dec(offset)
 	return pcntr
 
 def OP_73(pcntr):
 	"""JMP- unconditional 1 byte jump which takes address of A+DPTR"""
-	pcntr=A+DPTR
+	pcntr=UC.hex2dec(A+DPTR)
 	return pcntr
 
 def OP_80(pcntr):
 	"""SJMP 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+offset
+	pcntr=pcntr+UC.hex2dec(offset)
 	return pcntr
 
 def OP_B4(pcntr):
@@ -123,7 +123,7 @@ def OP_B4(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if A!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -142,7 +142,7 @@ def OP_B8(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R0!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -154,7 +154,7 @@ def OP_B9(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R1!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -166,7 +166,7 @@ def OP_BA(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R2!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -178,7 +178,7 @@ def OP_BB(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R3!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -190,7 +190,7 @@ def OP_BC(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R4!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -202,7 +202,7 @@ def OP_BD(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R5!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -214,7 +214,7 @@ def OP_BE(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R6!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -226,21 +226,105 @@ def OP_BF(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if R7!=immed_data:
-            pcntr=pcntr+offset
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
 
 def OP_D5(pcntr):
-#D8	2	DJNZ	R0, offset
 
 def OP_D8(pcntr):
 	"""DJNZ 2 byte instruction with comparison of decremented R0 with zero and offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	
-	if R0!=immed_data:
-            pcntr=pcntr+offset
+	decr0=UC.hex2dec(R0)-1
+	R0=UC.dec2hex(decr0)
+	if UC.hex2dec(R0)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_D9(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R1 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr1=UC.hex2dec(R1)-1
+	R1=UC.dec2hex(decr1)
+	if UC.hex2dec(R1)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_DA(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R2 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr2=UC.hex2dec(R2)-1
+	R2=UC.dec2hex(decr2)
+	if UC.hex2dec(R2)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_DB(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R3 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr3=UC.hex2dec(R3)-1
+	R3=UC.dec2hex(decr3)
+	if UC.hex2dec(R3)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_DC(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R4 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr4=UC.hex2dec(R4)-1
+	R4=UC.dec2hex(decr4)
+	if UC.hex2dec(R4)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_DD(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R5 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr5=UC.hex2dec(R5)-1
+	R5=UC.dec2hex(decr5)
+	if UC.hex2dec(R5)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_DE(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R6 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr6=UC.hex2dec(R6)-1
+	R6=UC.dec2hex(decr6)
+	if UC.hex2dec(R6)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
+	return pcntr
+
+def OP_DF(pcntr):
+	"""DJNZ 2 byte instruction with comparison of decremented R7 with zero and offset to PC"""
+	pcntr=pcntr+1
+	offset=UC.ROM[pcntr]
+	decr7=UC.hex2dec(R7)-1
+	R7=UC.dec2hex(decr7)
+	if UC.hex2dec(R7)!=0:
+            pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
