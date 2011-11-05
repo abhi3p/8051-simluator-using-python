@@ -4,12 +4,12 @@ form pylab import *
 
 ####################### AND operations #############################
 ## ANL(AND Logical)
-# ANL data addr,A : 52
-# ANL data addr,#data : 53
-# ANL A,#data : 54
-# ANL A,data addr: 55 
-# ANL A,@R0: 56 
-# ANL A,@R1: 57 
+# ANL data addr,A : 52 	 Not done
+# ANL data addr,#data : 53	Not done
+# ANL A,#data : 54  Not done
+# ANL A,data addr: 55 Not done 
+# ANL A,@R0: 56 Not done
+# ANL A,@R1: 57 Not done
 # ANL A,R0: 58
 # ANL A,R1: 59 
 # ANL A,R2: 5A 
@@ -112,123 +112,112 @@ def OP_5F(PC):
 ####################### OR Operations #############################
 ## ORL (OR Logical)
 # ORL data addr,A : 42  
-def op_52(PC):
-	#temp=value at address
-	temp=temp and A
-	#address=temp
-	length=2
-	cycles=1
-	PC=PC+length
-	return PC
+# ORL data addr,#data : 43  
+# ORL A,#data : 44    
+# ORL A,data addr: 45   
+# ORL A,@R0: 46   
+# ORL A,@R1: 47   
+# ORL A,R0: 48   
+# ORL A,R1: 49
+# ORL A,R2: 4A  
+# ORL A,R3: 4B   
+# ORL A,R4: 4C   
+# ORL A,R5: 4D   
+# ORL A,R6: 4E   
+# ORL A,R7: 4F      
 
-# ORL data addr,#data : 43   
-def op_43(PC,):
-	#temp=value at address
-	temp=temp and data
-	#address=temp
-	length=3
-	cycles=1
-	PC=PC+length
-	return PC
+
 
 # ORL A,#data : 44   
-def op_44(PC,):
-	A=A and data
-	length=2
-	cycles=1
-	PC=PC+length
-	return PC
- 
-# ORL A,data addr: 45   
-def op_45(PC,):
-	#temp=value at address
-	A=A and temp
-	length=2
-	cycles=1
-	PC=PC+length
+def OP_44(pcntr):
+	pcntr=pcntr+1
+	UC.A=UC.hex2dec(UC.A) | UC.hex2dec(UC.ROM[pcntr])
+	UC.dec2hex(UC.A)
+	pcntr=pcntr+1
+	#length=2
+	#cycles=1
 	return PC
 
-# ORL A,@R0: 46   
-def op_46(PC,):
-	#temp=value of address stored in R0
-	A=A and temp
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
-
-# ORL A,@R1: 47   
-def op_47(PC,):
-	#temp=value of address stored in R1
-	A=A and temp
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
 
 # ORL A,R0: 48   
-def op_48(PC,):
-	A=A and R0
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_48(pcntr):
+	""" ORL A,R0 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R0)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R1: 49   
-def op_49(PC,):
-	A=A and R1
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC 
+def OP_49(pcntr):
+	""" ORL A,R1 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R1)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R2: 4A   
-def op_4A(PC,):
-	A=A and R2
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_4A(pcntr):
+	""" ORL A,R2 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R2)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R3: 4B   
-def op_4B(PC,):
-	A=A and R3
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_4B(pcntr):
+	""" ORL A,R3 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R3)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R4: 4C   
-def op_4C(PC,):
-	A=A and R4
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_4C(pcntr):
+	""" ORL A,R4 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R4)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R5: 4D   
-def op_4D(PC,):
-	A=A and R5
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_4D(pcntr):
+	""" ORL A,R5 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R5)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R6: 4E   
-def op_4E(PC,):
-	A=A and R6
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_4E(pcntr):
+	""" ORL A,R6 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R6)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ORL A,R7: 4F   
-def op_4F(PC,):
-	A=A and R0
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_4F(pcntr):
+	""" ORL A,R7 """
+	UC.A = UC.hex2dec(UC.A) | UC.hex2dec(UC.R7)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 ####################### XOR operations #############################
 ## XRL(Exclusive OR Logical)
