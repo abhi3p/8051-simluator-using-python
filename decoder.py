@@ -6,11 +6,11 @@ opc_dict = {'CJNER2#-': 'BA', 'ADDA@R1': '27', 'ADDA@R0': '26', 'ACALL-': 'F1', 
 
 # print opc_dict, opc_dict['NOP'], opc_dict['MOVR7A']
 
-codes = ['AJMP','ADD','MOV','SUB','MUL','CJNE','INC']
+codes = ['NOP','AJMP','LJMP','RR','INC','JBC','ACALL','LCALL','RRC','','ADD','MOV','SUB','MUL','CJNE']
 regis = ['A','B','C','R0','R1','R2','R3','R4','R5','R6','R7','@R0','@R1','@DPTR','@A+DPTR','@A+PC']
 
 instr1 = 'ADD A, #10'
-instr2 = 'MOV A, R1'
+instr2 = 'mov a, r1'
 instr3 = 'MOV A, @R1'
 instr4 = 'MOV 20, #25'
 instr5 = 'INC A'
@@ -22,11 +22,11 @@ def split(instr):
 	if len(temp) == 1:
 		temp = instr.split(',')
 		if len(temp) == 1:
-			return instr.split(' ')
+			return instr.strip().split(' ')
 		elif len(temp) == 2:
-			return temp[0].split(' ') + [temp[1].strip()]
+			return temp[0].strip().split(' ') + [temp[1].strip()]
 		elif len(temp) == 3:
-			return temp[0].split(' ') + [temp[1].strip()] + [temp[2].strip()]
+			return temp[0].strip().split(' ') + [temp[1].strip()] + [temp[2].strip()]
 	else:
 		print "Label"
 
@@ -34,7 +34,7 @@ def split(instr):
 	
 
 def decode(inst):
-	instsplit = split(inst)
+	instsplit = split(inst.upper())
 	print instsplit
 	temp2 = []
 	opctemp = []
@@ -42,7 +42,7 @@ def decode(inst):
 		opctemp += [opc_dict[instsplit[0]]]
 		return opctemp
 	elif instsplit[0] in codes:
-		temp = instsplit[0]
+		temp = instsplit[0].upper()
 		for n in range(1,len(instsplit)):
 			if instsplit[n] in regis:
 				temp = temp + instsplit[n]
@@ -62,6 +62,6 @@ def decode(inst):
 		print "Error"
 
 
-opcode += decode(instr7)
+opcode += decode(instr2)
 print opcode
 
