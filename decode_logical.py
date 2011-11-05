@@ -18,137 +18,96 @@ form pylab import *
 # ANL A,R6: 5E 
 # ANL A,R7: 5F   
 
-# ANL data addr,A : 52
-#if (opcode[UC.ROM] =='52'):
-#	opr1=UC.ROM[PC+1]
-#	opr2=UC.A
-
-
-# ANL data addr,A : 52	
-# Eg. ANL 40h,A
-# (direct) = (direct) AND A
-#def op_52(PC):
-#	PC=PC+1
-#	UC.ROM[P  C]=UC.ROM[PC] and UC.A
-#	PC=PC+1
-#	length=2
-#	cycles=1
-#	return PC
-
-# ANL data addr,#data : 53 ##### Rewrite This ######  
-#def op_53(PC):
-#	PC=PC+1
-#	temp1=UC.ROM[PC]
-#	PC=PC+1
-#	temp2=UC.ROM[PC]
-#	PC=PC+1
-	#value at temp1temp2 + UC.ROM[PC+1]
-#	length=3
-#	cycles=1
-#	return PC
-
 # ANL A,#data : 54   
 def OP_54(pcntr):
-
 	""" ANL A,#data """ 
 	pcntr=pcntr+1
-	UC.A=hex2dec(UC.A) & hex2dec(UC.ROM[pcntr])
-	dec2hex(UC.A)
+	UC.A=UC.hex2dec(UC.A) & UC.hex2dec(UC.ROM[pcntr])
+	UC.dec2hex(UC.A)
 	pcntr=pcntr+1
 	#length=2
 	#cycles=1
 	return PC
  
-# ANL A,data addr: 55   	### Rewrite ### 
-def op_55(PC):
-	#temp=value at address
-	A=A and temp
-	length=2
-	cycles=1
-	PC=PC+length
-	return PC
-
-# ANL A,@R0: 56               ### Rewrite ### 
-def op_56(PC):                      
-	#temp=value of address stored in R0
-	A=A and temp
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
-
-# ANL A,@R1: 57    ### Rewrite ### 
-def op_57(PC,):
-	#temp=value of address stored in R1
-	A=A and temp
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
-
 # ANL A,R0: 58   
-def op_58(PC):
-	UC.A = UC.A and UC.R0
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_58(pcntr):
+	""" ANL A,R0 """
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R0)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R1: 59   
-def op_59(PC):
-	UC.A = UC.A and UC.R1
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC 
+def OP_59(pcntr):
+	""""ANL A,R1"""  
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R1)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R2: 5A   
-def op_5A(PC):
-	UC.A = UC.A and UC.R2
-	length=1
-	cycles=1	
-	PC=PC+length
-	return PC
+def OP_5A(pcntr):
+	"""ANL A,R2"""
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R2)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R3: 5B   
-def op_5B(PC,):
-	UC.A = UC.A and UC.R3
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_5B(pcntr):
+	"""ANL A,R3"""
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R3)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R4: 5C   
-def op_5C(PC):
-	UC.A = UC.A and UC.R4
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_5C(pcntr):
+	"""ANL A,R4"""	
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R4)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R5: 5D   
-def op_5D(PC):
-	UC.A = UC.A and UC.R5
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_5D(pcntr):
+	"""ANL A,R5"""	
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R5)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R6: 5E   
-def op_5E(PC):
-	UC.A = UC.A and UC.R6
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_5E(pcntr):
+	"""ANL A,R6"""
+        UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R6)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 # ANL A,R7: 5F   
-def op_5F(PC):
-	UC.A = UC.A and UC.R0
-	length=1
-	cycles=1
-	PC=PC+length
-	return PC
+def OP_5F(PC):
+	"""ANL A,R7"""
+	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R7)
+	UC.dec2hex(UC.A)	
+	#length=1
+	#cycles=1
+	pcntr=pcntr+1
+	return pcntr
 
 ####################### OR Operations #############################
 ## ORL (OR Logical)
