@@ -1,5 +1,6 @@
 #!/usr/bin/python 
 from Baseclass import *
+form pylab import *
 
 ####################### AND operations #############################
 ## ANL(AND Logical)
@@ -17,44 +18,45 @@ from Baseclass import *
 # ANL A,R6: 5E 
 # ANL A,R7: 5F   
 
-opcode=['52','53','54','55','56','57','58','59','5A','5B','5C','5D','5E','5F']
- 
-def ANL(opr1,opr2)
-	return (opr1 and opr2)
-
- # ANL data addr,A : 52
+# ANL data addr,A : 52
 #if (opcode[UC.ROM] =='52'):
 #	opr1=UC.ROM[PC+1]
 #	opr2=UC.A
 
 
 # ANL data addr,A : 52	
-def op_52(PC):
-	PC=PC+1
-	UC.ROM[PC]=UC.ROM[PC] and UC.A
-	PC=PC+1
-	length=2
-	cycles=1
-	return PC
+# Eg. ANL 40h,A
+# (direct) = (direct) AND A
+#def op_52(PC):
+#	PC=PC+1
+#	UC.ROM[P  C]=UC.ROM[PC] and UC.A
+#	PC=PC+1
+#	length=2
+#	cycles=1
+#	return PC
 
 # ANL data addr,#data : 53 ##### Rewrite This ######  
-def op_53(PC):
-	PC=PC+1
-	temp1=UC.ROM[PC]
-	PC=PC+1
-	temp2=UC.ROM[PC]
-	PC=PC+1
+#def op_53(PC):
+#	PC=PC+1
+#	temp1=UC.ROM[PC]
+#	PC=PC+1
+#	temp2=UC.ROM[PC]
+#	PC=PC+1
 	#value at temp1temp2 + UC.ROM[PC+1]
-	length=3
-	cycles=1
-	return PC
+#	length=3
+#	cycles=1
+#	return PC
 
 # ANL A,#data : 54   
-def op_54(PC):
-	UC.A=UC.A and UC.ROM[PC+1]
-	length=2
-	cycles=1
-	PC=PC+length
+def OP_54(pcntr):
+
+	""" ANL A,#data """ 
+	pcntr=pcntr+1
+	UC.A=hex2dec(UC.A) & hex2dec(UC.ROM[pcntr])
+	dec2hex(UC.A)
+	pcntr=pcntr+1
+	#length=2
+	#cycles=1
 	return PC
  
 # ANL A,data addr: 55   	### Rewrite ### 
