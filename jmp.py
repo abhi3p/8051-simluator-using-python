@@ -332,29 +332,3 @@ def OP_DF(pcntr):
 
 
 
-
-
-
-
-
-
-
-
-
-
-while BaseObj8051.PC_cntr < len(ROM):
-	if ROM[UC.PC] == '02':
-		adr1 = int(BaseObj8051.A,16)
-		opr2 = BaseObj8051.hex2dec(PM[BaseObj8051.PC_cntr+1])
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		print BaseObj8051.A
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 2
-
-
-
-#code = 'LOOP: MOV A, #10H'
-#if code!=code.split(':')[0]:
-#   label=code.split(':')[0]
-
-
