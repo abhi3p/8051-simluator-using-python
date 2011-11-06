@@ -1,6 +1,6 @@
 #!/usr/bin/python 
 from Baseclass import *
-form pylab import *
+from pylab import *
 
 ####################### AND OPerations #############################
 ## ANL(AND Logical)
@@ -18,6 +18,29 @@ form pylab import *
 # ANL A,R6: 5E 
 # ANL A,R7: 5F   
 
+# ANL data addr,A : 52				## Uncomment if we will use ###
+#def OP_52(pcntr):
+#	""" ANL data addr,A """
+#	pcntr=pcntr+1
+#	temp=UC.Data[UC.ROM[pcntr]]
+#	UC.Data[UC.ROM[pcntr]]=UC.hex2dec(temp)& UC.hex2dec(UC.A)
+#	UC.Data[UC.ROM[pcntr]]=UC.dec2hex(UC.Data[UC.ROM[pcntr]]) 
+#	pcntr=pcntr+1
+#	return pcntr
+
+# ANL data addr,#data : 53			## Uncomment if we will use ###
+#def OP_53(pcntr):
+#	""" ANL data addr,#data """"
+#	pcntr=pcntr+1
+#	temp1=UC.Data[UC.ROM[pcntr]]
+#	temp_pcntr=pcntr
+#	pcntr=pcntr+1
+#	temp2=UC.ROM[pcntr]
+#	UC.Data[UC.ROM[temp_pcntr]]=UC.hex2dec(temp1) & UC.hex2dec(temp2) 
+#	UC.Data[UC.ROM[temp_pcntr]]=UC.dec2hex(UC.Data[UC.ROM[temp_pcntr]])
+#	return pcntr
+
+
 # ANL A,#data : 54   
 def OP_54(pcntr):
 	""" ANL A,#data """ 
@@ -27,8 +50,35 @@ def OP_54(pcntr):
 	pcntr=pcntr+1
 	#length=2
 	#cycles=1
-	return PC
- 
+	return pcntr
+
+# ANL A,data addr : 55				## Uncomment if we use ###
+#def OP_55(pcntr):
+#	""" ANL A, data addr """
+#	pcntr=pcntr+1
+#	temp1=UC.Data[UC.ROM[pcntr]]
+#	UC.A=UC.hex2dec(UC.A) & UC.hex2dec(temp1)
+#	UC.A=UC.dec2hex(UC.A)
+#	return pcntr
+
+#ANL A,@R0: 56					## Uncomment if we use ###
+#def OP_56(pcntr):
+#	""" ANL A, @R0"""
+#	temp1=UC.Data[UC.R0]
+#	UC.A=UC.hex2dec(UC.A) & UC.hex2dec(temp1)
+#	UC.A=UC.dec2hex(UC.A)
+#	pcntr=pcntr+1
+#	return pcntr
+
+#ANL A,@R0: 57					## Uncomment if we use ###
+#def OP_57(pcntr):
+#	""" ANL A, @R0"""
+#	temp1=UC.Data[UC.R1]
+#	UC.A=UC.hex2dec(UC.A) & UC.hex2dec(temp1)
+#	UC.A=UC.dec2hex(UC.A)
+#	pcntr=pcntr+1
+#	return pcntr
+
 # ANL A,R0: 58   
 def OP_58(pcntr):
 	""" ANL A,R0 """
@@ -100,7 +150,7 @@ def OP_5E(pcntr):
 	return pcntr
 
 # ANL A,R7: 5F   
-def OP_5F(PC):
+def OP_5F(pcntr):
 	"""ANL A,R7"""
 	UC.A = UC.hex2dec(UC.A) & UC.hex2dec(UC.R7)
 	UC.A=UC.dec2hex(UC.A)	
@@ -380,7 +430,7 @@ def OP_F4(pcntr):
 	#lenght=1
 	#cycles=1
 	pcntr=pcntr+1
-	return PC
+	return pcntr
 
 ################## Rotate Instruction #####################
 # Rotate Accumulator left
