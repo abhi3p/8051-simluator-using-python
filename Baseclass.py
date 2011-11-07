@@ -19,7 +19,7 @@ class BaseClass8051:
 	SP=hex(7)
 	PSW=bin(0)+'0000000'
 	PC=0
-	DPTR_cntr=0
+	DPTR=0
 	ROW=[hex(255)]*2
 	COL=[hex(255)]*2
 	MEM=array([ROW,COL])
@@ -38,9 +38,10 @@ class BaseClass8051:
 
 	def bin2hex(self,bina):
 		""" Function to convert Binary to Hex Input '00001010' Output '0C' """
-		bina='0b'+bina		
+		bina='0b'+bina
+		print int(bina,2)
 		hexa=self.dec2hex(int(bina,2))
-		hexa=hexa[2:]
+		print hexa
 		hexa=hexa.upper()		
 		return hexa
 
