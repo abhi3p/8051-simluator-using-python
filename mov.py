@@ -184,6 +184,15 @@ def OP_93(pcntr):
 def OP_A2(pcntr):
 	""" MOV C,bitaddr"""
 
+
+def OP_A5(pcntr):
+	""" MOV B, #data. Not present in the actual opcode. Have added. JUGAAAD"""
+	pcntr=pcntr+1
+	pcntr=pcntr+1			#MOV B,#data is a 3 byte instruction
+	UC.A=UC.ROM[pcntr]
+	pcntr=pcntr+1
+	return(pcntr)
+
 def OP_A6(pcntr):
 	""" MOV @R0,dataaddr"""
 
