@@ -5,7 +5,6 @@ from pylab import *
 class BaseClass8051:
 	"""The base class of 8051 which consists of all common data types and functions used for the simulator"""
 	ROM=[hex(0)]*65536
-	DPTR=[0]*65536 #discuss
 	A=hex(0)
 	R0=hex(0)
 	R1=hex(0)
@@ -39,9 +38,7 @@ class BaseClass8051:
 	def bin2hex(self,bina):
 		""" Function to convert Binary to Hex Input '00001010' Output '0C' """
 		bina='0b'+bina
-		print int(bina,2)
 		hexa=self.dec2hex(int(bina,2))
-		print hexa
 		hexa=hexa.upper()		
 		return hexa
 
