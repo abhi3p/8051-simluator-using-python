@@ -1,75 +1,119 @@
 #!/usr/bin/env python
 from Baseclass import *
 
-PM = ['24','20','24','28','24','40','28','29','2A','2B','2C','2D','2E','2F']
-#PMD = [36,32,36,40,36,64,40,41,42,43,44,45,46,47]
+def OP_24(pcntr):
+	#--- ADD A,#data ---#
 
-def ADD(opr1,opr2):
-	return opr1+opr2
+def OP_25(pcntr):
+	#--- ADD A,data addr ---#
 
-while BaseObj8051.PC_cntr < len(PM):
-	if PM[BaseObj8051.PC_cntr] == '24':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = BaseObj8051.hex2dec(PM[BaseObj8051.PC_cntr+1])
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		print BaseObj8051.A
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 2
+def OP_26(pcntr):
+	#--- ADD A,@R0 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '28':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R0,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_27(pcntr):
+	#--- ADD A,@R1 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '29':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R1,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_28(pcntr):
+	#--- ADD A,R0 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '2A':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R2,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_29(pcntr):
+	#--- ADD A,R1 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '2B':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R3,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_2A(pcntr):
+	#--- ADD A,R2 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '2C':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R4,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_2B(pcntr):
+	#--- ADD A,R3 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '2D':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R5,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_2C(pcntr):
+	#--- ADD A,R4 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '2E':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R6,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
+def OP_2D(pcntr):
+	#--- ADD A,R5 ---#
 
-	if PM[BaseObj8051.PC_cntr] == '2F':
-		opr1 = int(BaseObj8051.A,16)
-		opr2 = int(BaseObj8051.R7,16)
-		ans = ADD(opr1,opr2)
-		BaseObj8051.A = hex(ans)
-		BaseObj8051.PC_cntr = BaseObj8051.PC_cntr + 1
-		print BaseObj8051.A
-		print BaseObj8051.PC_cntr
+def OP_2E(pcntr):
+	#--- ADD A,R6 ---#
+
+def OP_2F(pcntr):
+	#--- ADD A,R7 ---#
+
+def OP_34(pcntr):
+	#--- ADDC A,#data ---#
+
+def OP_35(pcntr):
+	#--- ADDC A,data addr ---#
+
+def OP_36(pcntr):
+	#--- ADDC A,@R0 ---#
+
+def OP_37(pcntr):
+	#--- ADDC A,@R1 ---#
+
+def OP_38(pcntr):
+	#--- ADDC A,R0 ---#
+
+def OP_39(pcntr):
+	#--- ADDC A,R1 ---#
+
+def OP_3A(pcntr):
+	#--- ADDC A,R2 ---#
+
+def OP_3B(pcntr):
+	#--- ADDC A,R3 ---#
+
+def OP_3C(pcntr):
+	#--- ADDC A,R4 ---#
+
+def OP_3D(pcntr):
+	#--- ADDC A,R5 ---#
+
+def OP_3E(pcntr):
+	#--- ADDC A,R6 ---#
+
+def OP_3F(pcntr):
+	#--- ADDC A,R7 ---#
+
+def OP_84(pcntr):
+	#--- DIV AB ---#
+
+def OP_94(pcntr):
+	#--- SUBB A,#data ---#
+
+def OP_95(pcntr):
+	#--- SUBB A,data addr ---#
+
+def OP_96(pcntr):
+	#--- SUBB A,@R0 ---#
+
+def OP_97(pcntr):
+	#--- SUBB A,@R1 ---#
+
+def OP_98(pcntr):
+	#--- SUBB A,R0 ---#
+
+def OP_99(pcntr):
+	#--- SUBB A,R1 ---#
+
+def OP_9A(pcntr):
+	#--- SUBB A,R2 ---#
+
+def OP_9B(pcntr):
+	#--- SUBB A,R3 ---#
+
+def OP_9C(pcntr):
+	#--- SUBB A,R4 ---#
+
+def OP_9D(pcntr):
+	#--- SUBB A,R5 ---#
+
+def OP_9E(pcntr):
+	#--- SUBB A,R6 ---#
+
+def OP_9F(pcntr):
+	#--- SUBB A,R7 ---#
+
+def OP_A3(pcntr):
+	#--- INC DPTR ---#
+
+def OP_A4(pcntr):
+	#--- MUL AB ---#
