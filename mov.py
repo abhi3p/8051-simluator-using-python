@@ -372,13 +372,13 @@ def OP_FF(pcntr):
 
 
 
-UC.R7=UC.dec2hex(14)
-UC.ROM[13] = UC.dec2hex(0)
-UC.ROM[14] = UC.dec2hex(1)
+#UC.R7=UC.dec2hex(14)
+#UC.ROM[13] = UC.dec2hex(0)
+#UC.ROM[14] = UC.dec2hex(1)
 
-pcntr=OP_8F(12)
+#pcntr=OP_8F(12)
 
 
-print UC.R7
-print pcntr
-print UC.MEM[1,0]
+#print UC.R7
+#print pcntr
+#print UC.MEM[1,0]

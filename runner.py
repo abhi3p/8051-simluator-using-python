@@ -1,3 +1,4 @@
+#!/usr/bin/python 
 from pylab import *
 from Baseclass import *
 from mov import *
@@ -5,544 +6,544 @@ from mov import *
 from jmp import *
 from decode_logical import *
 
-UC.PC = 5
-pcntr = 0
-while pcntr < UC.PC:
-	if UC.ROM[pcntr] == '00':
-		OP_00(pcntr)
-	elif UC.ROM[pcntr] == '01':
-		OP_01(pcntr)
-	elif UC.ROM[pcntr] == '02':
-		OP_02(pcntr)
-	elif UC.ROM[pcntr] == '03':
-		OP_03(pcntr)
-	elif UC.ROM[pcntr] == '04':
-		OP_04(pcntr)
-	elif UC.ROM[pcntr] == '05':
-		OP_05(pcntr)
-	elif UC.ROM[pcntr] == '06':
-		OP_06(pcntr)
-	elif UC.ROM[pcntr] == '07':
-		OP_07(pcntr)
-	elif UC.ROM[pcntr] == '08':
-		OP_08(pcntr)
-	elif UC.ROM[pcntr] == '09':
-		OP_09(pcntr)
-	elif UC.ROM[pcntr] == '0A':
-		OP_0A(pcntr)
-	elif UC.ROM[pcntr] == '0B':
-		OP_0B(pcntr)
-	elif UC.ROM[pcntr] == '0C':
-		OP_0C(pcntr)
-	elif UC.ROM[pcntr] == '0D':
-		OP_0D(pcntr)
-	elif UC.ROM[pcntr] == '0E':
-		OP_0E(pcntr)
-	elif UC.ROM[pcntr] == '0F':
-		OP_0F(pcntr)
+
+def runner():
+	pcntr_run = 0
+	UC.R0 = '12'
+	print UC.PC
+	print pcntr_run
 	
-	elif UC.ROM[pcntr] == '10':
-		OP_10(pcntr)
-	elif UC.ROM[pcntr] == '11':
-		OP_11(pcntr)
-	elif UC.ROM[pcntr] == '12':
-		OP_12(pcntr)
-	elif UC.ROM[pcntr] == '13':
-		OP_13(pcntr)
-	elif UC.ROM[pcntr] == '14':
-		OP_14(pcntr)
-	elif UC.ROM[pcntr] == '15':
-		OP_15(pcntr)
-	elif UC.ROM[pcntr] == '16':
-		OP_16(pcntr)
-	elif UC.ROM[pcntr] == '17':
-		OP_17(pcntr)
-	elif UC.ROM[pcntr] == '18':
-		OP_18(pcntr)
-	elif UC.ROM[pcntr] == '19':
-		OP_19(pcntr)
-	elif UC.ROM[pcntr] == '1A':
-		OP_1A(pcntr)
-	elif UC.ROM[pcntr] == '1B':
-		OP_1B(pcntr)
-	elif UC.ROM[pcntr] == '1C':
-		OP_1C(pcntr)
-	elif UC.ROM[pcntr] == '1D':
-		OP_1D(pcntr)
-	elif UC.ROM[pcntr] == '1E':
-		OP_1E(pcntr)
-	elif UC.ROM[pcntr] == '1F':
-		OP_1F(pcntr)
-
-	elif UC.ROM[pcntr] == '20':
-		OP_20(pcntr)
-	elif UC.ROM[pcntr] == '21':
-		OP_21(pcntr)
-	elif UC.ROM[pcntr] == '22':
-		OP_22(pcntr)
-	elif UC.ROM[pcntr] == '23':
-		OP_23(pcntr)
-	elif UC.ROM[pcntr] == '24':
-		OP_24(pcntr)
-	elif UC.ROM[pcntr] == '25':
-		OP_25(pcntr)
-	elif UC.ROM[pcntr] == '26':
-		OP_26(pcntr)
-	elif UC.ROM[pcntr] == '27':
-		OP_27(pcntr)
-	elif UC.ROM[pcntr] == '28':
-		OP_28(pcntr)
-	elif UC.ROM[pcntr] == '29':
-		OP_29(pcntr)
-	elif UC.ROM[pcntr] == '2A':
-		OP_2A(pcntr)
-	elif UC.ROM[pcntr] == '2B':
-		OP_2B(pcntr)
-	elif UC.ROM[pcntr] == '2C':
-		OP_2C(pcntr)
-	elif UC.ROM[pcntr] == '2D':
-		OP_2D(pcntr)
-	elif UC.ROM[pcntr] == '2E':
-		OP_2E(pcntr)
-	elif UC.ROM[pcntr] == '2F':
-		OP_2F(pcntr)
-
-	elif UC.ROM[pcntr] == '30':
-		OP_30(pcntr)
-	elif UC.ROM[pcntr] == '31':
-		OP_31(pcntr)
-	elif UC.ROM[pcntr] == '32':
-		OP_32(pcntr)
-	elif UC.ROM[pcntr] == '33':
-		OP_33(pcntr)
-	elif UC.ROM[pcntr] == '34':
-		OP_34(pcntr)
-	elif UC.ROM[pcntr] == '35':
-		OP_35(pcntr)
-	elif UC.ROM[pcntr] == '36':
-		OP_36(pcntr)
-	elif UC.ROM[pcntr] == '37':
-		OP_37(pcntr)
-	elif UC.ROM[pcntr] == '38':
-		OP_38(pcntr)
-	elif UC.ROM[pcntr] == '39':
-		OP_39(pcntr)
-	elif UC.ROM[pcntr] == '3A':
-		OP_3A(pcntr)
-	elif UC.ROM[pcntr] == '3B':
-		OP_3B(pcntr)
-	elif UC.ROM[pcntr] == '3C':
-		OP_3C(pcntr)
-	elif UC.ROM[pcntr] == '3D':
-		OP_3D(pcntr)
-	elif UC.ROM[pcntr] == '3E':
-		OP_3E(pcntr)
-	elif UC.ROM[pcntr] == '3F':
-		OP_3F(pcntr)
-
-	elif UC.ROM[pcntr] == '40':
-		OP_40(pcntr)
-	elif UC.ROM[pcntr] == '41':
-		OP_41(pcntr)
-	elif UC.ROM[pcntr] == '42':
-		OP_42(pcntr)
-	elif UC.ROM[pcntr] == '43':
-		OP_43(pcntr)
-	elif UC.ROM[pcntr] == '44':
-		OP_44(pcntr)
-	elif UC.ROM[pcntr] == '45':
-		OP_45(pcntr)
-	elif UC.ROM[pcntr] == '46':
-		OP_46(pcntr)
-	elif UC.ROM[pcntr] == '47':
-		OP_47(pcntr)
-	elif UC.ROM[pcntr] == '48':
-		OP_48(pcntr)
-	elif UC.ROM[pcntr] == '49':
-		OP_49(pcntr)
-	elif UC.ROM[pcntr] == '4A':
-		OP_4A(pcntr)
-	elif UC.ROM[pcntr] == '4B':
-		OP_4B(pcntr)
-	elif UC.ROM[pcntr] == '4C':
-		OP_4C(pcntr)
-	elif UC.ROM[pcntr] == '4D':
-		OP_4D(pcntr)
-	elif UC.ROM[pcntr] == '4E':
-		OP_4E(pcntr)
-	elif UC.ROM[pcntr] == '4F':
-		OP_4F(pcntr)
-
-	elif UC.ROM[pcntr] == '50':
-		OP_50(pcntr)
-	elif UC.ROM[pcntr] == '51':
-		OP_51(pcntr)
-	elif UC.ROM[pcntr] == '52':
-		OP_52(pcntr)
-	elif UC.ROM[pcntr] == '53':
-		OP_53(pcntr)
-	elif UC.ROM[pcntr] == '54':
-		OP_54(pcntr)
-	elif UC.ROM[pcntr] == '55':
-		OP_55(pcntr)
-	elif UC.ROM[pcntr] == '56':
-		OP_56(pcntr)
-	elif UC.ROM[pcntr] == '57':
-		OP_57(pcntr)
-	elif UC.ROM[pcntr] == '58':
-		OP_58(pcntr)
-	elif UC.ROM[pcntr] == '59':
-		OP_59(pcntr)
-	elif UC.ROM[pcntr] == '5A':
-		OP_5A(pcntr)
-	elif UC.ROM[pcntr] == '5B':
-		OP_5B(pcntr)
-	elif UC.ROM[pcntr] == '5C':
-		OP_5C(pcntr)
-	elif UC.ROM[pcntr] == '5D':
-		OP_5D(pcntr)
-	elif UC.ROM[pcntr] == '5E':
-		OP_5E(pcntr)
-	elif UC.ROM[pcntr] == '5F':
-		OP_5F(pcntr)
-
-
-	elif UC.ROM[pcntr] == '60':
-		OP_60(pcntr)
-	elif UC.ROM[pcntr] == '61':
-		OP_61(pcntr)
-	elif UC.ROM[pcntr] == '62':
-		OP_62(pcntr)
-	elif UC.ROM[pcntr] == '63':
-		OP_63(pcntr)
-	elif UC.ROM[pcntr] == '64':
-		OP_64(pcntr)
-	elif UC.ROM[pcntr] == '65':
-		OP_65(pcntr)
-	elif UC.ROM[pcntr] == '66':
-		OP_66(pcntr)
-	elif UC.ROM[pcntr] == '67':
-		OP_67(pcntr)
-	elif UC.ROM[pcntr] == '68':
-		OP_68(pcntr)
-	elif UC.ROM[pcntr] == '69':
-		OP_69(pcntr)
-	elif UC.ROM[pcntr] == '6A':
-		OP_6A(pcntr)
-	elif UC.ROM[pcntr] == '6B':
-		OP_6B(pcntr)
-	elif UC.ROM[pcntr] == '6C':
-		OP_6C(pcntr)
-	elif UC.ROM[pcntr] == '6D':
-		OP_6D(pcntr)
-	elif UC.ROM[pcntr] == '6E':
-		OP_6E(pcntr)
-	elif UC.ROM[pcntr] == '6F':
-		OP_6F(pcntr)
-
-	elif UC.ROM[pcntr] == '70':
-		OP_70(pcntr)
-	elif UC.ROM[pcntr] == '71':
-		OP_71(pcntr)
-	elif UC.ROM[pcntr] == '72':
-		OP_72(pcntr)
-	elif UC.ROM[pcntr] == '73':
-		OP_73(pcntr)
-	elif UC.ROM[pcntr] == '74':
-		OP_74(pcntr)
-	elif UC.ROM[pcntr] == '75':
-		OP_75(pcntr)
-	elif UC.ROM[pcntr] == '76':
-		OP_76(pcntr)
-	elif UC.ROM[pcntr] == '77':
-		OP_77(pcntr)
-	elif UC.ROM[pcntr] == '78':
-		OP_78(pcntr)
-	elif UC.ROM[pcntr] == '79':
-		OP_79(pcntr)
-	elif UC.ROM[pcntr] == '7A':
-		OP_7A(pcntr)
-	elif UC.ROM[pcntr] == '7B':
-		OP_7B(pcntr)
-	elif UC.ROM[pcntr] == '7C':
-		OP_7C(pcntr)
-	elif UC.ROM[pcntr] == '7D':
-		OP_7D(pcntr)
-	elif UC.ROM[pcntr] == '7E':
-		OP_7E(pcntr)
-	elif UC.ROM[pcntr] == '7F':
-		OP_7F(pcntr)
+	while pcntr_run < UC.PC:
+			
+		if UC.ROM[pcntr_run] == '00':
+			pcntr_run=OP_00(pcntr_run)
+		elif UC.ROM[pcntr_run] == '01':
+			pcntr_run=OP_01(pcntr_run)
+		elif UC.ROM[pcntr_run] == '02':
+			pcntr_run=OP_02(pcntr_run)
+		elif UC.ROM[pcntr_run] == '03':
+			pcntr_run=OP_03(pcntr_run)
+		elif UC.ROM[pcntr_run] == '04':
+			pcntr_run=OP_04(pcntr_run)
+		elif UC.ROM[pcntr_run] == '05':
+			pcntr_run=OP_05(pcntr_run)
+		elif UC.ROM[pcntr_run] == '06':
+			pcntr_run=OP_06(pcntr_run)
+		elif UC.ROM[pcntr_run] == '07':
+			pcntr_run=OP_07(pcntr_run)
+		elif UC.ROM[pcntr_run] == '08':
+			pcntr_run=OP_08(pcntr_run)
+		elif UC.ROM[pcntr_run] == '09':
+			pcntr_run=OP_09(pcntr_run)
+		elif UC.ROM[pcntr_run] == '0A':
+			pcntr_run=OP_0A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '0B':
+			pcntr_run=OP_0B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '0C':
+			pcntr_run=OP_0C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '0D':
+			pcntr_run=OP_0D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '0E':
+			pcntr_run=OP_0E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '0F':
+			pcntr_run=OP_0F(pcntr_run)
 	
-	elif UC.ROM[pcntr] == '80':
-		OP_80(pcntr)
-	elif UC.ROM[pcntr] == '81':
-		OP_81(pcntr)
-	elif UC.ROM[pcntr] == '82':
-		OP_82(pcntr)
-	elif UC.ROM[pcntr] == '83':
-		OP_83(pcntr)
-	elif UC.ROM[pcntr] == '84':
-		OP_84(pcntr)
-	elif UC.ROM[pcntr] == '85':
-		OP_85(pcntr)
-	elif UC.ROM[pcntr] == '86':
-		OP_86(pcntr)
-	elif UC.ROM[pcntr] == '87':
-		OP_87(pcntr)
-	elif UC.ROM[pcntr] == '88':
-		OP_88(pcntr)
-	elif UC.ROM[pcntr] == '89':
-		OP_89(pcntr)
-	elif UC.ROM[pcntr] == '8A':
-		OP_8A(pcntr)
-	elif UC.ROM[pcntr] == '8B':
-		OP_8B(pcntr)
-	elif UC.ROM[pcntr] == '8C':
-		OP_8C(pcntr)
-	elif UC.ROM[pcntr] == '8D':
-		OP_8D(pcntr)
-	elif UC.ROM[pcntr] == '8E':
-		OP_8E(pcntr)
-	elif UC.ROM[pcntr] == '8F':
-		OP_8F(pcntr)
+		elif UC.ROM[pcntr_run] == '10':
+			pcntr_run=OP_10(pcntr_run)
+		elif UC.ROM[pcntr_run] == '11':
+			pcntr_run=OP_11(pcntr_run)
+		elif UC.ROM[pcntr_run] == '12':
+			pcntr_run=OP_12(pcntr_run)
+		elif UC.ROM[pcntr_run] == '13':
+			pcntr_run=OP_13(pcntr_run)
+		elif UC.ROM[pcntr_run] == '14':
+			pcntr_run=OP_14(pcntr_run)
+		elif UC.ROM[pcntr_run] == '15':
+			pcntr_run=OP_15(pcntr_run)
+		elif UC.ROM[pcntr_run] == '16':
+			pcntr_run=OP_16(pcntr_run)
+		elif UC.ROM[pcntr_run] == '17':
+			pcntr_run=OP_17(pcntr_run)
+		elif UC.ROM[pcntr_run] == '18':
+			pcntr_run=OP_18(pcntr_run)
+		elif UC.ROM[pcntr_run] == '19':
+			pcntr_run=OP_19(pcntr_run)
+		elif UC.ROM[pcntr_run] == '1A':
+			pcntr_run=OP_1A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '1B':
+			pcntr_run=OP_1B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '1C':
+			pcntr_run=OP_1C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '1D':
+			pcntr_run=OP_1D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '1E':
+			pcntr_run=OP_1E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '1F':
+			pcntr_run=OP_1F(pcntr_run)
 
-	elif UC.ROM[pcntr] == '90':
-		OP_90(pcntr)
-	elif UC.ROM[pcntr] == '91':
-		OP_91(pcntr)
-	elif UC.ROM[pcntr] == '92':
-		OP_92(pcntr)
-	elif UC.ROM[pcntr] == '93':
-		OP_93(pcntr)
-	elif UC.ROM[pcntr] == '94':
-		OP_94(pcntr)
-	elif UC.ROM[pcntr] == '95':
-		OP_95(pcntr)
-	elif UC.ROM[pcntr] == '96':
-		OP_96(pcntr)
-	elif UC.ROM[pcntr] == '97':
-		OP_97(pcntr)
-	elif UC.ROM[pcntr] == '98':
-		OP_98(pcntr)
-	elif UC.ROM[pcntr] == '99':
-		OP_99(pcntr)
-	elif UC.ROM[pcntr] == '9A':
-		OP_9A(pcntr)
-	elif UC.ROM[pcntr] == '9B':
-		OP_9B(pcntr)
-	elif UC.ROM[pcntr] == '9C':
-		OP_9C(pcntr)
-	elif UC.ROM[pcntr] == '9D':
-		OP_9D(pcntr)
-	elif UC.ROM[pcntr] == '9E':
-		OP_9E(pcntr)
-	elif UC.ROM[pcntr] == '9F':
-		OP_9F(pcntr)
+		elif UC.ROM[pcntr_run] == '20':
+			pcntr_run=OP_20(pcntr_run)
+		elif UC.ROM[pcntr_run] == '21':
+			pcntr_run=OP_21(pcntr_run)
+		elif UC.ROM[pcntr_run] == '22':
+			pcntr_run=OP_22(pcntr_run)
+		elif UC.ROM[pcntr_run] == '23':
+			pcntr_run=OP_23(pcntr_run)
+		elif UC.ROM[pcntr_run] == '24':
+			pcntr_run=OP_24(pcntr_run)
+		elif UC.ROM[pcntr_run] == '25':
+			pcntr_run=OP_25(pcntr_run)
+		elif UC.ROM[pcntr_run] == '26':
+			pcntr_run=OP_26(pcntr_run)
+		elif UC.ROM[pcntr_run] == '27':
+			pcntr_run=OP_27(pcntr_run)
+		elif UC.ROM[pcntr_run] == '28':
+			pcntr_run=OP_28(pcntr_run)
+		elif UC.ROM[pcntr_run] == '29':
+			pcntr_run=OP_29(pcntr_run)
+		elif UC.ROM[pcntr_run] == '2A':
+			pcntr_run=OP_2A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '2B':
+			pcntr_run=OP_2B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '2C':
+			pcntr_run=OP_2C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '2D':
+			pcntr_run=OP_2D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '2E':
+			pcntr_run=OP_2E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '2F':
+			pcntr_run=OP_2F(pcntr_run)
 	
-	elif UC.ROM[pcntr] == 'A0':
-		OP_A0(pcntr)
-	elif UC.ROM[pcntr] == 'A1':
-		OP_A1(pcntr)
-	elif UC.ROM[pcntr] == 'A2':
-		OP_A2(pcntr)
-	elif UC.ROM[pcntr] == 'A3':
-		OP_A3(pcntr)
-	elif UC.ROM[pcntr] == 'A4':
-		OP_A4(pcntr)
-	elif UC.ROM[pcntr] == 'A5':
-		OP_A5(pcntr)
-	elif UC.ROM[pcntr] == 'A6':
-		OP_A6(pcntr)
-	elif UC.ROM[pcntr] == 'A7':
-		OP_A7(pcntr)
-	elif UC.ROM[pcntr] == 'A8':
-		OP_A8(pcntr)
-	elif UC.ROM[pcntr] == 'A9':
-		OP_A9(pcntr)
-	elif UC.ROM[pcntr] == 'AA':
-		OP_AA(pcntr)
-	elif UC.ROM[pcntr] == 'AB':
-		OP_AB(pcntr)
-	elif UC.ROM[pcntr] == 'AC':
-		OP_AC(pcntr)
-	elif UC.ROM[pcntr] == 'AD':
-		OP_AD(pcntr)
-	elif UC.ROM[pcntr] == 'AE':
-		OP_AE(pcntr)
-	elif UC.ROM[pcntr] == 'AF':
-		OP_AF(pcntr)
+		elif UC.ROM[pcntr_run] == '30':
+			pcntr_run=OP_30(pcntr_run)
+		elif UC.ROM[pcntr_run] == '31':
+			pcntr_run=OP_31(pcntr_run)
+		elif UC.ROM[pcntr_run] == '32':
+			pcntr_run=OP_32(pcntr_run)
+		elif UC.ROM[pcntr_run] == '33':
+			pcntr_run=OP_33(pcntr_run)
+		elif UC.ROM[pcntr_run] == '34':
+			pcntr_run=OP_34(pcntr_run)
+		elif UC.ROM[pcntr_run] == '35':
+			pcntr_run=OP_35(pcntr_run)
+		elif UC.ROM[pcntr_run] == '36':
+			pcntr_run=OP_36(pcntr_run)
+		elif UC.ROM[pcntr_run] == '37':
+			pcntr_run=OP_37(pcntr_run)
+		elif UC.ROM[pcntr_run] == '38':
+			pcntr_run=OP_38(pcntr_run)
+		elif UC.ROM[pcntr_run] == '39':
+			pcntr_run=OP_39(pcntr_run)
+		elif UC.ROM[pcntr_run] == '3A':
+			pcntr_run=OP_3A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '3B':
+			pcntr_run=OP_3B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '3C':
+			pcntr_run=OP_3C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '3D':
+			pcntr_run=OP_3D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '3E':
+			pcntr_run=OP_3E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '3F':
+			pcntr_run=OP_3F(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == '40':
+			pcntr_run=OP_40(pcntr_run)
+		elif UC.ROM[pcntr_run] == '41':
+			pcntr_run=OP_41(pcntr_run)
+		elif UC.ROM[pcntr_run] == '42':
+			pcntr_run=OP_42(pcntr_run)
+		elif UC.ROM[pcntr_run] == '43':
+			pcntr_run=OP_43(pcntr_run)
+		elif UC.ROM[pcntr_run] == '44':
+			pcntr_run=OP_44(pcntr_run)
+		elif UC.ROM[pcntr_run] == '45':
+			pcntr_run=OP_45(pcntr_run)
+		elif UC.ROM[pcntr_run] == '46':
+			pcntr_run=OP_46(pcntr_run)
+		elif UC.ROM[pcntr_run] == '47':
+			pcntr_run=OP_47(pcntr_run)
+		elif UC.ROM[pcntr_run] == '48':
+			pcntr_run=OP_48(pcntr_run)
+		elif UC.ROM[pcntr_run] == '49':
+			pcntr_run=OP_49(pcntr_run)
+		elif UC.ROM[pcntr_run] == '4A':
+			pcntr_run=OP_4A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '4B':
+			pcntr_run=OP_4B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '4C':
+			pcntr_run=OP_4C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '4D':
+			pcntr_run=OP_4D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '4E':
+			pcntr_run=OP_4E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '4F':
+			pcntr_run=OP_4F(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == '50':
+			pcntr_run=OP_50(pcntr_run)
+		elif UC.ROM[pcntr_run] == '51':
+			pcntr_run=OP_51(pcntr_run)
+		elif UC.ROM[pcntr_run] == '52':
+			pcntr_run=OP_52(pcntr_run)
+		elif UC.ROM[pcntr_run] == '53':
+			pcntr_run=OP_53(pcntr_run)
+		elif UC.ROM[pcntr_run] == '54':
+			pcntr_run=OP_54(pcntr_run)
+		elif UC.ROM[pcntr_run] == '55':
+			pcntr_run=OP_55(pcntr_run)
+		elif UC.ROM[pcntr_run] == '56':
+			pcntr_run=OP_56(pcntr_run)
+		elif UC.ROM[pcntr_run] == '57':
+			pcntr_run=OP_57(pcntr_run)
+		elif UC.ROM[pcntr_run] == '58':
+			pcntr_run=OP_58(pcntr_run)
+		elif UC.ROM[pcntr_run] == '59':
+			pcntr_run=OP_59(pcntr_run)
+		elif UC.ROM[pcntr_run] == '5A':
+			pcntr_run=OP_5A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '5B':
+			pcntr_run=OP_5B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '5C':
+			pcntr_run=OP_5C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '5D':
+			pcntr_run=OP_5D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '5E':
+			pcntr_run=OP_5E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '5F':
+			pcntr_run=OP_5F(pcntr_run)
 
-	elif UC.ROM[pcntr] == 'B0':
-		OP_B0(pcntr)
-	elif UC.ROM[pcntr] == 'B1':
-		OP_B1(pcntr)
-	elif UC.ROM[pcntr] == 'B2':
-		OP_B2(pcntr)
-	elif UC.ROM[pcntr] == 'B3':
-		OP_B3(pcntr)
-	elif UC.ROM[pcntr] == 'B4':
-		OP_B4(pcntr)
-	elif UC.ROM[pcntr] == 'B5':
-		OP_B5(pcntr)
-	elif UC.ROM[pcntr] == 'B6':
-		OP_B6(pcntr)
-	elif UC.ROM[pcntr] == 'B7':
-		OP_B7(pcntr)
-	elif UC.ROM[pcntr] == 'B8':
-		OP_B8(pcntr)
-	elif UC.ROM[pcntr] == 'B9':
-		OP_B9(pcntr)
-	elif UC.ROM[pcntr] == 'BA':
-		OP_BA(pcntr)
-	elif UC.ROM[pcntr] == 'BB':
-		OP_BB(pcntr)
-	elif UC.ROM[pcntr] == 'BC':
-		OP_BC(pcntr)
-	elif UC.ROM[pcntr] == 'BD':
-		OP_BD(pcntr)
-	elif UC.ROM[pcntr] == 'BE':
-		OP_BE(pcntr)
-	elif UC.ROM[pcntr] == 'BF':
-		OP_BF(pcntr)
-
-	elif UC.ROM[pcntr] == 'C0':
-		OP_C0(pcntr)
-	elif UC.ROM[pcntr] == 'C1':
-		OP_C1(pcntr)
-	elif UC.ROM[pcntr] == 'C2':
-		OP_C2(pcntr)
-	elif UC.ROM[pcntr] == 'C3':
-		OP_C3(pcntr)
-	elif UC.ROM[pcntr] == 'C4':
-		OP_C4(pcntr)
-	elif UC.ROM[pcntr] == 'C5':
-		OP_C5(pcntr)
-	elif UC.ROM[pcntr] == 'C6':
-		OP_C6(pcntr)
-	elif UC.ROM[pcntr] == 'C7':
-		OP_C7(pcntr)
-	elif UC.ROM[pcntr] == 'C8':
-		OP_C8(pcntr)
-	elif UC.ROM[pcntr] == 'C9':
-		OP_C9(pcntr)
-	elif UC.ROM[pcntr] == 'CA':
-		OP_CA(pcntr)
-	elif UC.ROM[pcntr] == 'CB':
-		OP_CB(pcntr)
-	elif UC.ROM[pcntr] == 'CC':
-		OP_CC(pcntr)
-	elif UC.ROM[pcntr] == 'CD':
-		OP_CD(pcntr)
-	elif UC.ROM[pcntr] == 'CE':
-		OP_CE(pcntr)
-	elif UC.ROM[pcntr] == 'CF':
-		OP_CF(pcntr)
-
-	elif UC.ROM[pcntr] == 'D0':
-		OP_D0(pcntr)
-	elif UC.ROM[pcntr] == 'D1':
-		OP_D1(pcntr)
-	elif UC.ROM[pcntr] == 'D2':
-		OP_D2(pcntr)
-	elif UC.ROM[pcntr] == 'D3':
-		OP_D3(pcntr)
-	elif UC.ROM[pcntr] == 'D4':
-		OP_D4(pcntr)
-	elif UC.ROM[pcntr] == 'D5':
-		OP_D5(pcntr)
-	elif UC.ROM[pcntr] == 'D6':
-		OP_D6(pcntr)
-	elif UC.ROM[pcntr] == 'D7':
-		OP_D7(pcntr)
-	elif UC.ROM[pcntr] == 'D8':
-		OP_D8(pcntr)
-	elif UC.ROM[pcntr] == 'D9':
-		OP_D9(pcntr)
-	elif UC.ROM[pcntr] == 'DA':
-		OP_DA(pcntr)
-	elif UC.ROM[pcntr] == 'DB':
-		OP_DB(pcntr)
-	elif UC.ROM[pcntr] == 'DC':
-		OP_DC(pcntr)
-	elif UC.ROM[pcntr] == 'DD':
-		OP_DD(pcntr)
-	elif UC.ROM[pcntr] == 'DE':
-		OP_DE(pcntr)
-	elif UC.ROM[pcntr] == 'DF':
-		OP_DF(pcntr)
-
-	elif UC.ROM[pcntr] == 'E0':
-		OP_E0(pcntr)
-	elif UC.ROM[pcntr] == 'E1':
-		OP_E1(pcntr)
-	elif UC.ROM[pcntr] == 'E2':
-		OP_E2(pcntr)
-	elif UC.ROM[pcntr] == 'E3':
-		OP_E3(pcntr)
-	elif UC.ROM[pcntr] == 'E4':
-		OP_E4(pcntr)
-	elif UC.ROM[pcntr] == 'E5':
-		OP_E5(pcntr)
-	elif UC.ROM[pcntr] == 'E6':
-		OP_E6(pcntr)
-	elif UC.ROM[pcntr] == 'E7':
-		OP_E7(pcntr)
-	elif UC.ROM[pcntr] == 'E8':
-		OP_E8(pcntr)
-	elif UC.ROM[pcntr] == 'E9':
-		OP_E9(pcntr)
-	elif UC.ROM[pcntr] == 'EA':
-		OP_EA(pcntr)
-	elif UC.ROM[pcntr] == 'EB':
-		OP_EB(pcntr)
-	elif UC.ROM[pcntr] == 'EC':
-		OP_EC(pcntr)
-	elif UC.ROM[pcntr] == 'ED':
-		OP_ED(pcntr)
-	elif UC.ROM[pcntr] == 'EE':
-		OP_EE(pcntr)
-	elif UC.ROM[pcntr] == 'EF':
-		OP_EF(pcntr)
-
-	elif UC.ROM[pcntr] == 'F0':
-		OP_F0(pcntr)
-	elif UC.ROM[pcntr] == 'F1':
-		OP_F1(pcntr)
-	elif UC.ROM[pcntr] == 'F2':
-		OP_F2(pcntr)
-	elif UC.ROM[pcntr] == 'F3':
-		OP_F3(pcntr)
-	elif UC.ROM[pcntr] == 'F4':
-		OP_F4(pcntr)
-	elif UC.ROM[pcntr] == 'F5':
-		OP_F5(pcntr)
-	elif UC.ROM[pcntr] == 'F6':
-		OP_F6(pcntr)
-	elif UC.ROM[pcntr] == 'F7':
-		OP_F7(pcntr)
-	elif UC.ROM[pcntr] == 'F8':
-		OP_F8(pcntr)
-	elif UC.ROM[pcntr] == 'F9':
-		OP_F9(pcntr)
-	elif UC.ROM[pcntr] == 'FA':
-		OP_FA(pcntr)
-	elif UC.ROM[pcntr] == 'FB':
-		OP_FB(pcntr)
-	elif UC.ROM[pcntr] == 'FC':
-		OP_FC(pcntr)
-	elif UC.ROM[pcntr] == 'FD':
-		OP_FD(pcntr)
-	elif UC.ROM[pcntr] == 'FE':
-		OP_FE(pcntr)
-	elif UC.ROM[pcntr] == 'FF':
-		OP_FF(pcntr)
-
-
-
-
-
-
-
+		elif UC.ROM[pcntr_run] == '60':
+			pcntr_run=OP_60(pcntr_run)
+		elif UC.ROM[pcntr_run] == '61':
+			pcntr_run=OP_61(pcntr_run)
+		elif UC.ROM[pcntr_run] == '62':
+			pcntr_run=OP_62(pcntr_run)
+		elif UC.ROM[pcntr_run] == '63':
+			pcntr_run=OP_63(pcntr_run)
+		elif UC.ROM[pcntr_run] == '64':
+			pcntr_run=OP_64(pcntr_run)
+		elif UC.ROM[pcntr_run] == '65':
+			pcntr_run=OP_65(pcntr_run)
+		elif UC.ROM[pcntr_run] == '66':
+			pcntr_run=OP_66(pcntr_run)
+		elif UC.ROM[pcntr_run] == '67':
+			pcntr_run=OP_67(pcntr_run)
+		elif UC.ROM[pcntr_run] == '68':
+			pcntr_run=OP_68(pcntr_run)
+		elif UC.ROM[pcntr_run] == '69':
+			pcntr_run=OP_69(pcntr_run)
+		elif UC.ROM[pcntr_run] == '6A':
+			pcntr_run=OP_6A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '6B':
+			pcntr_run=OP_6B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '6C':
+			pcntr_run=OP_6C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '6D':
+			pcntr_run=OP_6D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '6E':
+			pcntr_run=OP_6E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '6F':
+			pcntr_run=OP_6F(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == '70':
+			pcntr_run=OP_70(pcntr_run)
+		elif UC.ROM[pcntr_run] == '71':
+			pcntr_run=OP_71(pcntr_run)
+		elif UC.ROM[pcntr_run] == '72':
+			pcntr_run=OP_72(pcntr_run)
+		elif UC.ROM[pcntr_run] == '73':
+			pcntr_run=OP_73(pcntr_run)
+		elif UC.ROM[pcntr_run] == '74':
+			pcntr_run=OP_74(pcntr_run)
+		elif UC.ROM[pcntr_run] == '75':
+			pcntr_run=OP_75(pcntr_run)
+		elif UC.ROM[pcntr_run] == '76':
+			pcntr_run=OP_76(pcntr_run)
+		elif UC.ROM[pcntr_run] == '77':
+			pcntr_run=OP_77(pcntr_run)
+		elif UC.ROM[pcntr_run] == '78':
+			pcntr_run=OP_78(pcntr_run)
+		elif UC.ROM[pcntr_run] == '79':
+			pcntr_run=OP_79(pcntr_run)
+		elif UC.ROM[pcntr_run] == '7A':
+			pcntr_run=OP_7A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '7B':
+			pcntr_run=OP_7B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '7C':
+			pcntr_run=OP_7C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '7D':
+			pcntr_run=OP_7D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '7E':
+			pcntr_run=OP_7E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '7F':
+			pcntr_run=OP_7F(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == '80':
+			pcntr_run=OP_80(pcntr_run)
+		elif UC.ROM[pcntr_run] == '81':
+			pcntr_run=OP_81(pcntr_run)
+		elif UC.ROM[pcntr_run] == '82':
+			pcntr_run=OP_82(pcntr_run)
+		elif UC.ROM[pcntr_run] == '83':
+			pcntr_run=OP_83(pcntr_run)
+		elif UC.ROM[pcntr_run] == '84':
+			pcntr_run=OP_84(pcntr_run)
+		elif UC.ROM[pcntr_run] == '85':
+			pcntr_run=OP_85(pcntr_run)
+		elif UC.ROM[pcntr_run] == '86':
+			pcntr_run=OP_86(pcntr_run)
+		elif UC.ROM[pcntr_run] == '87':
+			pcntr_run=OP_87(pcntr_run)
+		elif UC.ROM[pcntr_run] == '88':
+			pcntr_run=OP_88(pcntr_run)
+		elif UC.ROM[pcntr_run] == '89':
+			pcntr_run=OP_89(pcntr_run)
+		elif UC.ROM[pcntr_run] == '8A':
+			pcntr_run=OP_8A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '8B':
+			pcntr_run=OP_8B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '8C':
+			pcntr_run=OP_8C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '8D':
+			pcntr_run=OP_8D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '8E':
+			pcntr_run=OP_8E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '8F':
+			pcntr_run=OP_8F(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == '90':
+			pcntr_run=OP_90(pcntr_run)
+		elif UC.ROM[pcntr_run] == '91':
+			pcntr_run=OP_91(pcntr_run)
+		elif UC.ROM[pcntr_run] == '92':
+			pcntr_run=OP_92(pcntr_run)
+		elif UC.ROM[pcntr_run] == '93':
+			pcntr_run=OP_93(pcntr_run)
+		elif UC.ROM[pcntr_run] == '94':
+			pcntr_run=OP_94(pcntr_run)
+		elif UC.ROM[pcntr_run] == '95':
+			pcntr_run=OP_95(pcntr_run)
+		elif UC.ROM[pcntr_run] == '96':
+			pcntr_run=OP_96(pcntr_run)
+		elif UC.ROM[pcntr_run] == '97':
+			pcntr_run=OP_97(pcntr_run)
+		elif UC.ROM[pcntr_run] == '98':
+			pcntr_run=OP_98(pcntr_run)
+		elif UC.ROM[pcntr_run] == '99':
+			pcntr_run=OP_99(pcntr_run)
+		elif UC.ROM[pcntr_run] == '9A':
+			pcntr_run=OP_9A(pcntr_run)
+		elif UC.ROM[pcntr_run] == '9B':
+			pcntr_run=OP_9B(pcntr_run)
+		elif UC.ROM[pcntr_run] == '9C':
+			pcntr_run=OP_9C(pcntr_run)
+		elif UC.ROM[pcntr_run] == '9D':
+			pcntr_run=OP_9D(pcntr_run)
+		elif UC.ROM[pcntr_run] == '9E':
+			pcntr_run=OP_9E(pcntr_run)
+		elif UC.ROM[pcntr_run] == '9F':
+			pcntr_run=OP_9F(pcntr_run)
+		
+		elif UC.ROM[pcntr_run] == 'A0':
+			pcntr_run=OP_A0(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A1':
+			pcntr_run=OP_A1(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A2':
+			pcntr_run=OP_A2(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A3':
+			pcntr_run=OP_A3(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A4':
+			pcntr_run=OP_A4(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A5':
+			pcntr_run=OP_A5(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A6':
+			pcntr_run=OP_A6(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A7':
+			pcntr_run=OP_A7(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A8':
+			pcntr_run=OP_A8(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'A9':
+			pcntr_run=OP_A9(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'AA':
+			pcntr_run=OP_AA(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'AB':
+			pcntr_run=OP_AB(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'AC':
+			pcntr_run=OP_AC(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'AD':
+			pcntr_run=OP_AD(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'AE':
+			pcntr_run=OP_AE(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'AF':
+			pcntr_run=OP_AF(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == 'B0':
+			pcntr_run=OP_B0(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B1':
+			pcntr_run=OP_B1(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B2':
+			pcntr_run=OP_B2(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B3':
+			pcntr_run=OP_B3(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B4':
+			pcntr_run=OP_B4(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B5':
+			pcntr_run=OP_B5(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B6':
+			pcntr_run=OP_B6(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B7':
+			pcntr_run=OP_B7(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B8':
+			pcntr_run=OP_B8(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'B9':
+			pcntr_run=OP_B9(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'BA':
+			pcntr_run=OP_BA(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'BB':
+			pcntr_run=OP_BB(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'BC':
+			pcntr_run=OP_BC(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'BD':
+			pcntr_run=OP_BD(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'BE':
+			pcntr_run=OP_BE(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'BF':
+			pcntr_run=OP_BF(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == 'C0':
+			pcntr_run=OP_C0(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C1':
+			pcntr_run=OP_C1(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C2':
+			pcntr_run=OP_C2(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C3':
+			pcntr_run=OP_C3(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C4':
+			pcntr_run=OP_C4(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C5':
+			pcntr_run=OP_C5(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C6':
+			pcntr_run=OP_C6(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C7':
+			pcntr_run=OP_C7(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C8':
+			pcntr_run=OP_C8(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'C9':
+			pcntr_run=OP_C9(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'CA':
+			pcntr_run=OP_CA(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'CB':
+			pcntr_run=OP_CB(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'CC':
+			pcntr_run=OP_CC(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'CD':
+			pcntr_run=OP_CD(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'CE':
+			pcntr_run=OP_CE(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'CF':
+			pcntr_run=OP_CF(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == 'D0':
+			pcntr_run=OP_D0(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D1':
+			pcntr_run=OP_D1(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D2':
+			pcntr_run=OP_D2(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D3':
+			pcntr_run=OP_D3(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D4':
+			pcntr_run=OP_D4(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D5':
+			pcntr_run=OP_D5(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D6':
+			pcntr_run=OP_D6(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D7':
+			pcntr_run=OP_D7(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D8':
+			pcntr_run=OP_D8(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'D9':
+			pcntr_run=OP_D9(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'DA':
+			pcntr_run=OP_DA(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'DB':
+			pcntr_run=OP_DB(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'DC':
+			pcntr_run=OP_DC(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'DD':
+			pcntr_run=OP_DD(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'DE':
+			pcntr_run=OP_DE(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'DF':
+			pcntr_run=OP_DF(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == 'E0':
+			pcntr_run=OP_E0(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E1':
+			pcntr_run=OP_E1(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E2':
+			pcntr_run=OP_E2(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E3':
+			pcntr_run=OP_E3(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E4':
+			pcntr_run=OP_E4(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E5':
+			pcntr_run=OP_E5(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E6':
+			pcntr_run=OP_E6(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E7':
+			pcntr_run=OP_E7(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E8':
+			pcntr_run=OP_E8(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'E9':
+			pcntr_run=OP_E9(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'EA':
+			pcntr_run=OP_EA(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'EB':
+			pcntr_run=OP_EB(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'EC':
+			pcntr_run=OP_EC(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'ED':
+			pcntr_run=OP_ED(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'EE':
+			pcntr_run=OP_EE(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'EF':
+			pcntr_run=OP_EF(pcntr_run)
+	
+		elif UC.ROM[pcntr_run] == 'F0':
+			pcntr_run=OP_F0(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F1':
+			pcntr_run=OP_F1(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F2':
+			pcntr_run=OP_F2(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F3':
+			pcntr_run=OP_F3(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F4':
+			pcntr_run=OP_F4(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F5':
+			pcntr_run=OP_F5(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F6':
+			pcntr_run=OP_F6(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F7':
+			pcntr_run=OP_F7(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F8':
+			pcntr_run=OP_F8(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'F9':
+			pcntr_run=OP_F9(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'FA':
+			pcntr_run=OP_FA(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'FB':
+			pcntr_run=OP_FB(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'FC':
+			pcntr_run=OP_FC(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'FD':
+			pcntr_run=OP_FD(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'FE':
+			pcntr_run=OP_FE(pcntr_run)
+		elif UC.ROM[pcntr_run] == 'FF':
+			pcntr_run=OP_FF(pcntr_run)
+	
+		print UC.A
 
 
 

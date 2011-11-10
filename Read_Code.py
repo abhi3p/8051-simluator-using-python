@@ -3,21 +3,25 @@ from decoder import *
 from Baseclass import *
 from pylab import *
 
-f=open('test.asm')
-asm_code=f.read()
-asm_code_list=asm_code.splitlines()
-print asm_code
-f.close()
+def Read_Code():
+	f=open('test.asm')
+	asm_code=f.read()
+	asm_code_list=asm_code.splitlines()
+	print asm_code
+	f.close()
 
-opcode=[]
+	opcode=[]
 
-for n in asm_code_list:
-	opcode+=decode(n)
+	for n in asm_code_list:
+		opcode+=decode(n)
 
-print opcode
+	print opcode
 
-for n in range(0,len(opcode)):
-	UC.ROM[n]=opcode[n]
+	for n in range(0,len(opcode)):
+		UC.ROM[n]=opcode[n]
 
-print UC.ROM[0:20]
+	UC.PC=len(opcode)
+	print UC.ROM[0:20]
+	print UC.PC
+
 
