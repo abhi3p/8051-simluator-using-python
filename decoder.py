@@ -36,7 +36,7 @@ def split(instr):
 def decode(inst):
 	instsplit = split(inst.upper())
 	#--- Decode the splitted instruction ['MOV','A','7A'] to ['E5','7A'] ---#
-#	print instsplit
+	print instsplit
 	temp2 = []
 	opctemp = []
 	if len(instsplit) == 1:
@@ -54,13 +54,17 @@ def decode(inst):
 					temp2.append(instsplit[n][1:3])
 				elif len(instsplit[n]) == 4:
 					temp2.append(instsplit[n][2:4])
+				elif len(instsplit[n]) == 5:	#---- for dptr
+					temp2.append(instsplit[n][1:3])
+					temp2.append(instsplit[n][3:5])
+
 			else:
 				temp = temp + '-'
 				if instsplit[n] in sfrs:	#--- Decode SFR ---#
 					temp2.append(sfr_dict[instsplit[n]])
 				elif len(instsplit[n]) == 2:
 					temp2.append(instsplit[n])
-				elif len(instsplit[n]) == 3:
+				elif len(instsplit[n]) == 3:	
 					temp2.append(instsplit[n][1:3])
 
 		opctemp += [opc_dict[temp]] + temp2
@@ -91,6 +95,6 @@ ainstr17 = 'MOV r1,DPH'
 allinstrlist = ['NOP', 'AJMP 4E', 'LJMP 4E,2E', 'sameer : INC A']
 
 #for ainstr in allinstrlist:
-opcode += decode(ainstr10)
+opcode += decode(ainstr16)
 print opcode
 
