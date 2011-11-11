@@ -14,7 +14,7 @@ sfrs = ['B','P0','P1','P2','P3','PSW','SP','DPL','DPH']
 codes = ['NOP', 'AJMP', 'LJMP', 'RR', 'INC', 'JBC', 'ACALL', 'LCALL', 'RRC', 'DEC', 'JB', 'RET', 'RL', 'ADD', 'JNB', 'RETI', 'RLC', 'ADDC', 'JC', 'ORL', 'JNC', 'ANL', 'JZ', 'XRL', 'JNZ', 'JMP', 'MOV', 'SJMP', 'MOVC', 'DIV', 'SUBB', 'MUL', 'CPL', 'CJNE', 'PUSH', 'CLR', 'SWAP', 'XCH', 'POP', 'SETB', 'DA', 'XCHD', 'DJNZ', 'MOVX']
 
 #--- Registers ---#
-regis = ['A','B','C','R0','R1','R2','R3','R4','R5','R6','R7','@R0','@R1','DPTR','@DPTR','@A+DPTR','@A+PC','AB']
+regis = ['A','C','R0','R1','R2','R3','R4','R5','R6','R7','@R0','@R1','DPTR','@DPTR','@A+DPTR','@A+PC','AB']
 
 def split(instr):
 	#--- Split the string 'MOV A,R1' to ['MOV','A','R1'] ---#
@@ -56,7 +56,12 @@ def decode(inst):
 					temp2.append(instsplit[n][2:4])
 			else:
 				temp = temp + '-'
-				temp2.append(instsplit[n])
+				if instsplit[n] in sfrs:	#--- Decode SFR ---#
+					temp2.append(sfr_dict[instsplit[n]])
+				elif len(instsplit[n]) == 2:
+					temp2.append(instsplit[n])
+				elif len(instsplit[n]) == 3:
+					temp2.append(instsplit[n][1:3])
 
 		opctemp += [opc_dict[temp]] + temp2
 #		print opctemp
@@ -86,6 +91,6 @@ ainstr17 = 'MOV r1,DPH'
 allinstrlist = ['NOP', 'AJMP 4E', 'LJMP 4E,2E', 'sameer : INC A']
 
 #for ainstr in allinstrlist:
-opcode += decode(ainstr)
+opcode += decode(ainstr10)
 print opcode
 
