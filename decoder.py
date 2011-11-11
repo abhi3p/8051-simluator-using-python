@@ -68,7 +68,8 @@ def decode(instruction):
 				elif len(instsplit[n]) == 6:	#--- decode data of kind #0F334 for DPTR ---#
 					temp2.append(instsplit[n][2:4])
 					temp2.append(instsplit[n][4:6])
-
+				else:
+					print "Error typing data " + instsplit[n]	#--- Error in data ---#
 			else:
 				temp = temp + '-'
 				if instsplit[n] in sfrs_list:	#--- Decode SFR ---#
@@ -79,7 +80,8 @@ def decode(instruction):
 					temp2.append(instsplit[n])
 				elif len(instsplit[n]) == 3:	#--- decode code addr of kind 0F3 ---#
 					temp2.append(instsplit[n][1:3])
-
+				else:
+					print "Error typing address " + instsplit[n]	#---- Error in address ---#
 
 		opctemp += [opc_dict[temp]] + temp2
 #		print opctemp
@@ -107,7 +109,7 @@ ainstr15 = 'movx @DPTR,A'
 ainstr16 = 'mov DPTR,#0e321'
 ainstr17 = 'MOV r1,DPH'
 ainstr18 = 'SJMP label'
-allinstrlist = ['NOP', 'AJMP 4E', 'LJMP 4E,2E', 'sameer : MOV A,B', 'SJMP sameer']
+allinstrlist = ['NOP', 'AJMP 4E', 'LJMP 4E,2E', 'sameer:  MOV A,B', 'SJMP sameer', 'label : MOV DPTR,#e231', 'MOV r1,DPH', 'SJMP label']
 
 for ainstr in allinstrlist:
 	opcode += decode(ainstr)
