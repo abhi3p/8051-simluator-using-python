@@ -52,11 +52,14 @@ def decode(inst):
 				temp = temp + '#'
 				if len(instsplit[n]) == 3:
 					temp2.append(instsplit[n][1:3])
-				elif len(instsplit[n]) == 4:
+				elif len(instsplit[n]) == 4:	#--- decode data of kind #0F3 ---#
 					temp2.append(instsplit[n][2:4])
-				elif len(instsplit[n]) == 5:	#---- for dptr
+				elif len(instsplit[n]) == 5:	#--- For DPTR ---#
 					temp2.append(instsplit[n][1:3])
 					temp2.append(instsplit[n][3:5])
+				elif len(instsplit[n]) == 6:	#--- decode data of kind #0F334 for DPTR ---#
+					temp2.append(instsplit[n][2:4])
+					temp2.append(instsplit[n][4:6])
 
 			else:
 				temp = temp + '-'
@@ -64,7 +67,7 @@ def decode(inst):
 					temp2.append(sfr_dict[instsplit[n]])
 				elif len(instsplit[n]) == 2:
 					temp2.append(instsplit[n])
-				elif len(instsplit[n]) == 3:	
+				elif len(instsplit[n]) == 3:	#--- decode code addr of kind 0F3 ---#
 					temp2.append(instsplit[n][1:3])
 
 		opctemp += [opc_dict[temp]] + temp2
