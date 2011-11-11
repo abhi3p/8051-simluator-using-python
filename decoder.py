@@ -16,25 +16,33 @@ codes = ['NOP', 'AJMP', 'LJMP', 'RR', 'INC', 'JBC', 'ACALL', 'LCALL', 'RRC', 'DE
 #--- Registers ---#
 regis = ['A','C','R0','R1','R2','R3','R4','R5','R6','R7','@R0','@R1','DPTR','@DPTR','@A+DPTR','@A+PC','AB']
 
-def split(instr):
-	#--- Split the string 'MOV A,R1' to ['MOV','A','R1'] ---#
+#--- Label empty list and dictionary ---#
+label = []
+label_dict = {}
+#-----------------------------------------------------------------------------------------------------------------------#
+
+def splitcs(instrcs):
+	#--- Split 'MOV A,#24' into ['MOV','A','#24'] ---#
+	temp = instrcs.split(',')
+	if len(temp) == 1:
+		return instrcs.strip().split(' ')
+	elif len(temp) == 2:
+		return temp[0].strip().split(' ') + [temp[1].strip()]
+	elif len(temp) == 3:
+		return temp[0].strip().split(' ') + [temp[1].strip()] + [temp[2].strip()]
+
+def splitinst(instr):
+	#--- Split 'LABEL : MOV A,#24' into ['MOV','A','#24'] ---#
 	temp = instr.split(':')
 	if len(temp) == 1:
-		temp = instr.split(',')
-		if len(temp) == 1:
-			return instr.strip().split(' ')
-		elif len(temp) == 2:
-			return temp[0].strip().split(' ') + [temp[1].strip()]
-		elif len(temp) == 3:
-			return temp[0].strip().split(' ') + [temp[1].strip()] + [temp[2].strip()]
+		return splitcs(temp[0])
 	else:
-		print "Label"
+		label.append(temp[0])
+		label_dict[temp[0]] = len(opcode)
+		return splitcs(temp[1].strip())
 
-#def exdata(adata):
-
-
-def decode(inst):
-	instsplit = split(inst.upper())
+def decode(instruction):
+	instsplit = splitinst(instruction.upper())
 	#--- Decode the splitted instruction ['MOV','A','7A'] to ['E5','7A'] ---#
 	print instsplit
 	temp2 = []
@@ -95,9 +103,9 @@ ainstr14 = 'MOV r0,A'
 ainstr15 = 'movx @DPTR,A'
 ainstr16 = 'mov DPTR,#0e321'
 ainstr17 = 'MOV r1,DPH'
+ainstr18 = 'SJMP label'
 allinstrlist = ['NOP', 'AJMP 4E', 'LJMP 4E,2E', 'sameer : INC A']
 
 #for ainstr in allinstrlist:
-opcode += decode(ainstr16)
-print opcode
-
+opcode += decode(ainstr8)
+print opcode, label, label_dict
