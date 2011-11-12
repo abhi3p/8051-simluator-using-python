@@ -3,26 +3,45 @@ from Baseclass import *
 
 def setpsw(n):
 	temp = UC.hex2dec(UC.bin2hex(UC.PSW[2:]))
-	if n == 0:
+	if n == 0 and UC.PSW[9] == '0':
 		temp += 1
-	elif n == 1:
+	elif n == 1 and UC.PSW[8] == '0':
 		temp += 2
-	elif n == 2:
+	elif n == 2 and UC.PSW[7] == '0':
 		temp += 4
-	elif n == 3:
+	elif n == 3 and UC.PSW[6] == '0':
 		temp += 8
-	elif n == 4:
+	elif n == 4 and UC.PSW[5] == '0':
 		temp += 16
-	elif n == 5:
+	elif n == 5 and UC.PSW[4] == '0':
 		temp += 32
-	elif n == 6:
+	elif n == 6 and UC.PSW[3] == '0':
 		temp += 64
-	elif n == 7:
+	elif n == 7 and UC.PSW[2] == '0':
 		temp += 128
-	else:
-		print "Invalid bit number"
 	UC.PSW = '0b'+UC.hex2bin(UC.dec2hex(int(temp)))
+	print UC.PSW
 
+def resetpsw(n):
+	temp = UC.hex2dec(UC.bin2hex(UC.PSW[2:]))
+	if n == 0 and UC.PSW[9] == '1':
+		temp -= 1
+	elif n == 1 and UC.PSW[8] == '1':
+		temp -= 2
+	elif n == 2 and UC.PSW[7] == '1':
+		temp -= 4
+	elif n == 3 and UC.PSW[6] == '1':
+		temp -= 8
+	elif n == 4 and UC.PSW[5] == '1':
+		temp -= 16
+	elif n == 5 and UC.PSW[4] == '1':
+		temp -= 32
+	elif n == 6 and UC.PSW[3] == '1':
+		temp -= 64
+	elif n == 7 and UC.PSW[2] == '1':
+		temp -= 128
+	UC.PSW = '0b'+UC.hex2bin(UC.dec2hex(int(temp)))
+	print UC.PSW
 def OP_04(pcntr):
 	#--- INC A ---#
 	UC.A = UC.incr(UC.A,1)
@@ -169,7 +188,8 @@ def OP_24(pcntr):
 	#--- ADD A,#data ---#
 	pcntr = pcntr + 1
 	lsbsum = UC.dec2hex(int(add(UC.hex2dec(UC.A[1]),UC.hex2dec(UC.ROM[pcntr][1]))))
-	fstnibb = add(UC.UC.A[1],)
+	if len(lsbsum) == 2:
+		setpsw(6)
 	return(pcntr)
 
 def OP_25(pcntr):
@@ -325,7 +345,5 @@ def OP_A4(pcntr):
 	return(pcntr)
 
 UC.A = '2B'
-pc = OP_04(0)
+pc = OP_04(1)
 print UC.A, pc
-setpsw(7)
-print UC.PSW
