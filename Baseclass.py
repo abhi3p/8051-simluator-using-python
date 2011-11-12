@@ -17,7 +17,7 @@ class BaseClass8051:
 	R7=hex(0)
 #	B=hex(0)
 	SP=hex(7)
-	PSW=bin(0)+'0000000'
+	PSW='00000000'#bin(0)+'0000000'
 	PC=0
 	DPTR=0
 	MEM=[hex(0)]*65536

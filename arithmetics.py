@@ -1,6 +1,28 @@
 #!/usr/bin/env python
 from Baseclass import *
 
+def setpsw(n):
+	temp = UC.hex2dec(UC.bin2hex(UC.PSW[2:]))
+	if n == 0:
+		temp += 1
+	elif n == 1:
+		temp += 2
+	elif n == 2:
+		temp += 4
+	elif n == 3:
+		temp += 8
+	elif n == 4:
+		temp += 16
+	elif n == 5:
+		temp += 32
+	elif n == 6:
+		temp += 64
+	elif n == 7:
+		temp += 128
+	else:
+		print "Invalid bit number"
+	UC.PSW = '0b'+UC.hex2bin(UC.dec2hex(int(temp)))
+
 def OP_04(pcntr):
 	#--- INC A ---#
 	UC.A = UC.incr(UC.A,1)
@@ -145,6 +167,9 @@ def OP_1F(pcntr):
 
 def OP_24(pcntr):
 	#--- ADD A,#data ---#
+	pcntr = pcntr + 1
+	lsbsum = UC.dec2hex(int(add(UC.hex2dec(UC.A[1]),UC.hex2dec(UC.ROM[pcntr][1]))))
+	fstnibb = add(UC.UC.A[1],)
 	return(pcntr)
 
 def OP_25(pcntr):
@@ -299,6 +324,8 @@ def OP_A4(pcntr):
 	#--- MUL AB ---#
 	return(pcntr)
 
-UC.A = '20'
+UC.A = '2B'
 pc = OP_04(0)
 print UC.A, pc
+setpsw(7)
+print UC.PSW

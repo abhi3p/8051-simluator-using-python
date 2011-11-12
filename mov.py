@@ -488,7 +488,9 @@ def OP_FF(pcntr):
 
 
 	
-
+UC.A = '20'
+pc = OP_74(0)
+print UC.A, pc
 
 
 
