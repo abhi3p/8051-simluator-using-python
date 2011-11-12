@@ -185,7 +185,7 @@ def OP_1F(pcntr):
 
 def OP_24(pcntr):
 	#--- ADD A,#data ---#
-	pcntr = pcntr + 1
+	pcntr += 1
 	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.ROM[pcntr][1])))
 	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.ROM[pcntr][0])))
 	if lsbsum[0] != '0':
@@ -202,8 +202,8 @@ def OP_24(pcntr):
 			UC.A = msbsum[1]+lsbsum[1]
 		else:
 			UC.A = msbsum[1]+lsbsum[1]
-		
-	return pcntr, lsbsum, msbsum
+	pcntr += 1
+	return pcntr
 
 def OP_25(pcntr):
 	#--- ADD A,data addr ---#
@@ -407,7 +407,7 @@ def OP_34(pcntr):
 		else:
 			UC.A = msbsum[1]+lsbsum[1]
 	pcntr += 1
-	return pcntr, lsbsum, msbsum
+	return pcntr
 
 def OP_35(pcntr):
 	#--- ADDC A,data addr ---#
@@ -607,6 +607,13 @@ def OP_3F(pcntr):
 
 def OP_84(pcntr):
 	#--- DIV AB ---#
+	if UC.B == '00':
+		setpsw(2)
+	else:
+		temp = UC.dec2hex(int(UC.hex2dec(UC.A)/UC.hex2dec(UC.B)))
+		UC.B = UC.dec2hex(int(UC.hex2dec(UC.A)%UC.hex2dec(UC.B)))
+		UC.A = temp
+	pcntr += 1
 	return pcntr
 
 def OP_94(pcntr):
@@ -663,9 +670,22 @@ def OP_A3(pcntr):
 
 def OP_A4(pcntr):
 	#--- MUL AB ---#
+	mult = UC.dec2hex(int(UC.hex2dec(UC.A)*UC.hex2dec(UC.B)))
+	if len(mult) == 2:
+		UC.A = mult
+		UC.B = UC.dec2hex(0)
+	elif len(mult) == 3:
+		UC.A = mult[1:]
+		UC.B = '0'+mult[0]
+	elif len(mult) == 4:
+		UC.A = mult[2:]
+		UC.B = mult[:2]
+	else:
+		setpsw(2)
+	pcntr += 1
 	return pcntr
 
 #UC.A = '7D'
-pc, lsbsum, msbsum = OP_34(1)
+pc = OP_84(1)
 print UC.A, pc
-print UC.PSW, lsbsum, msbsum
+print UC.PSW, UC.B, UC.A

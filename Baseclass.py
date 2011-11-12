@@ -15,7 +15,7 @@ class BaseClass8051:
 	R5=hex(0)
 	R6=hex(0)
 	R7=hex(0)
-#	B=hex(0)
+	B=hex(0)
 	SP=hex(7)
 	PSW=bin(0)+'0000000'
 	PC=0
