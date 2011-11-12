@@ -423,34 +423,186 @@ def OP_37(pcntr):
 
 def OP_38(pcntr):
 	#--- ADDC A,R0 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R0[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R0[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_39(pcntr):
 	#--- ADDC A,R1 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R1[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R1[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_3A(pcntr):
 	#--- ADDC A,R2 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R2[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R2[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_3B(pcntr):
 	#--- ADDC A,R3 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R3[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R3[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_3C(pcntr):
 	#--- ADDC A,R4 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R4[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R4[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_3D(pcntr):
 	#--- ADDC A,R5 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R5[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R5[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_3E(pcntr):
 	#--- ADDC A,R6 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R6[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R6[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_3F(pcntr):
 	#--- ADDC A,R7 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.R7[1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.R7[0])))
+	if lsbsum[0] != '0':
+		setpsw(6)
+		msbsum = UC.dec2hex(int(UC.hex2dec(msbsum)+1))
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	else:
+		if msbsum[0] != '0':
+			setpsw(7)
+			UC.A = msbsum[1]+lsbsum[1]
+		else:
+			UC.A = msbsum[1]+lsbsum[1]
+	pcntr += 1
 	return pcntr
 
 def OP_84(pcntr):
