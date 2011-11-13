@@ -27,22 +27,22 @@ def OP_04(pcntr):
 def OP_05(pcntr):
 	#--- INC data addr ---#
 	pcntr += 1
-	temp = UC.hex2dec(pcntr)
-	UC.RAM[temp] += 1
+	temp = UC.hex2dec(UC.ROM[pcntr])
+	UC.RAM[temp] = UC.incr(UC.RAM[temp],1)
 	pcntr += 1
 	return pcntr
 
 def OP_06(pcntr):
 	#--- INC @R0 ---#
 	temp = UC.hex2dec(UC.R0)
-	UC.RAM[temp] += 1
+	UC.RAM[temp] = UC.incr(UC.RAM[temp],1)
 	pcntr += 1
 	return pcntr
 
 def OP_07(pcntr):
 	#--- INC @R1 ---#
 	temp = UC.hex2dec(UC.R1)
-	UC.RAM[temp] += 1
+	UC.RAM[temp] = UC.incr(UC.RAM[temp],1)
 	pcntr += 1
 	return pcntr
 
@@ -102,14 +102,24 @@ def OP_14(pcntr):
 
 def OP_15(pcntr):
 	#--- DEC data addr ---#
+	pcntr += 1
+	temp = UC.hex2dec(UC.ROM[pcntr])
+	UC.RAM[temp] = UC.decr(UC.RAM[temp],1)
+	pcntr += 1
 	return pcntr
 
 def OP_16(pcntr):
 	#--- DEC @R0 ---#
+	temp = UC.hex2dec(UC.R0)
+	UC.RAM[temp] = UC.decr(UC.RAM[temp],1)
+	pcntr += 1
 	return pcntr
 
 def OP_17(pcntr):
 	#--- DEC @R1 ---#
+	temp = UC.hex2dec(UC.R1)
+	UC.RAM[temp] = UC.decr(UC.RAM[temp],1)
+	pcntr += 1
 	return pcntr
 
 def OP_18(pcntr):
@@ -171,14 +181,27 @@ def OP_24(pcntr):
 
 def OP_25(pcntr):
 	#--- ADD A,data addr ---#
+	pcntr += 1
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])][1])))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])][0])))
+	addacc(lsbsum,msbsum)
+	pcntr += 1
 	return pcntr
 
 def OP_26(pcntr):
 	#--- ADD A,@R0 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0)][1])))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0)][0])))
+	addacc(lsbsum,msbsum)
+	pcntr += 1
 	return pcntr
 
 def OP_27(pcntr):
 	#--- ADD A,@R1 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1)][1])))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1)][0])))
+	addacc(lsbsum,msbsum)
+	pcntr += 1
 	return pcntr
 
 def OP_28(pcntr):
@@ -258,14 +281,33 @@ def OP_34(pcntr):
 
 def OP_35(pcntr):
 	#--- ADDC A,data addr ---#
+	pcntr += 1
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])][1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])][0])))
+	addacc(lsbsum,msbsum)
+	pcntr += 1
 	return pcntr
 
 def OP_36(pcntr):
 	#--- ADDC A,@R0 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0)][1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0)][0])))
+	addacc(lsbsum,msbsum)
+	pcntr += 1
 	return pcntr
 
 def OP_37(pcntr):
 	#--- ADDC A,@R1 ---#
+	lsbsum = UC.dec2hex(int(UC.hex2dec(UC.A[1])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1)][1])))
+	if UC.PSW[2] == '1':
+		lsbsum = UC.dec2hex(int(UC.hex2dec(lsbsum)+1))
+	msbsum = UC.dec2hex(int(UC.hex2dec(UC.A[0])+UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1)][0])))
+	addacc(lsbsum,msbsum)
+	pcntr += 1
 	return pcntr
 
 def OP_38(pcntr):
