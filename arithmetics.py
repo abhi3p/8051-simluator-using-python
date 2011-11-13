@@ -18,6 +18,17 @@ def addacc(lsb,msb):
 		else:
 			UC.A = msb[1]+lsb[1]
 
+def cpl2(value):
+	temp1 = ''
+	temp2 = UC.hex2bin(value)
+	for n in range(0,len(temp2)):
+		if temp2[n] == '0':
+			temp1 += '1'
+		else:
+			temp1 += '0'
+	temp1 = UC.incr(UC.bin2hex(temp1),1)
+	return temp1
+
 def OP_04(pcntr):
 	#--- INC A ---#
 	UC.A = UC.incr(UC.A,1)
@@ -403,6 +414,16 @@ def OP_84(pcntr):
 
 def OP_94(pcntr):
 	#--- SUBB A,#data ---#
+	pcntr += 1
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.ROM[pcntr]))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.ROM[pcntr]))))
+		setpsw(7)
+		print "negative value"
+	pcntr += 1
 	return pcntr
 
 def OP_95(pcntr):
@@ -471,6 +492,6 @@ def OP_A4(pcntr):
 	return pcntr
 
 #UC.A = '7D'
-pc = OP_34(1)
+pc = OP_94(1)
 print UC.A, pc
 print UC.PSW, UC.A
