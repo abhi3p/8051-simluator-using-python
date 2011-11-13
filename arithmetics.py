@@ -422,52 +422,140 @@ def OP_94(pcntr):
 	else:
 		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.ROM[pcntr]))))
 		setpsw(7)
-		print "negative value"
 	pcntr += 1
 	return pcntr
 
 def OP_95(pcntr):
 	#--- SUBB A,data addr ---#
+	pcntr += 1
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.ROM[pcntr]))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_96(pcntr):
 	#--- SUBB A,@R0 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0[pcntr])))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.R0[pcntr]))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_97(pcntr):
 	#--- SUBB A,@R1 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1[pcntr])))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.R1[pcntr]))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_98(pcntr):
 	#--- SUBB A,R0 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R0))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R0))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_99(pcntr):
 	#--- SUBB A,R1 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R1))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R1))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_9A(pcntr):
 	#--- SUBB A,R2 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R2))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R2))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_9B(pcntr):
 	#--- SUBB A,R3 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R3))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R3))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_9C(pcntr):
 	#--- SUBB A,R4 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R4))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R4))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_9D(pcntr):
 	#--- SUBB A,R5 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R5))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R5))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_9E(pcntr):
 	#--- SUBB A,R6 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R6))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R6))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_9F(pcntr):
 	#--- SUBB A,R7 ---#
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.R7))
+	if temp >= 0:
+		UC.A = UC.dec2hex(temp)
+		resetpsw(7)
+	else:
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.R7))))
+		setpsw(7)
+	pcntr += 1
 	return pcntr
 
 def OP_A3(pcntr):
