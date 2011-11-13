@@ -57,7 +57,7 @@ def OP_7A(pcntr):
 
 def OP_7B(pcntr):
 	""" MOV R3, #data"""
-	pcntr=pcntr+1
+	pcntr=pcntr+1 
 	UC.R3=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	return(pcntr)
@@ -222,7 +222,7 @@ def OP_A5(pcntr):
 	pcntr=pcntr+1
 	pcntr=pcntr+1			#MOV B,#data is a 3 byte instruction
 	UC.A=UC.ROM[pcntr]
-	pcntr=pcntr+1
+	pcntr=pcntr+1 
 	return(pcntr)
 
 def OP_A6(pcntr):
@@ -292,7 +292,7 @@ def OP_AD(pcntr):
 def OP_AE(pcntr):
 	"""MOV R6,dataaddr"""
 	pcntr=pcntr+1
-	temp1=UC.hex2dec(UC.ROM[pcntr])
+	temp1=UC.hex2dec(UC.ROM[pcntr]) 
 	UC.R6=UC.RAM[temp1]
 	pcntr=pcntr+1
 	return pcntr
@@ -367,7 +367,7 @@ def OP_Eb(pcntr):
 	return(pcntr)
 
 def OP_EC(pcntr):
-	""" MOV A,R4"""
+	""" MOV A,R4""" 
 	UC.A = UC.R4
 	pcntr=pcntr+1
 	return(pcntr)
@@ -487,10 +487,11 @@ def OP_FF(pcntr):
 
 
 
-	
-UC.A = '20'
-pc = OP_74(0)
-print UC.A, pc
+def OP_C0(pcntr)
+	""" PUSH data addr"""
+
+def OP_0(pcntr)
+	""" POP data addr"""	
 
 
 
@@ -500,6 +501,7 @@ print UC.A, pc
 
 
 
+ 
 #UC.R7=UC.dec2hex(14)
 #UC.ROM[13] = UC.dec2hex(0)
 #UC.ROM[14] = UC.dec2hex(1)
