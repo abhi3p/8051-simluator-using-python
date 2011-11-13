@@ -20,7 +20,7 @@ def OP_75(pcntr):
 
 def OP_76(pcntr):
 	""" MOV @R0, #data"""
-	temp=UC.hex3dec(UC.R0)
+	temp=UC.hex2dec(UC.R0)
 	pcntr=pcntr+1
 	UC.RAM[temp]=UC.ROM[pcntr]
 	pcntr=pcntr+1
@@ -28,7 +28,7 @@ def OP_76(pcntr):
 	
 def OP_77(pcntr):
 	""" MOV @R1,#data"""
-	temp=UC.hex3dec(UC.R1)
+	temp=UC.hex2dec(UC.R1)
 	pcntr=pcntr+1
 	UC.RAM[temp]=UC.ROM[pcntr]
 	pcntr=pcntr+1
