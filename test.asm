@@ -1,7 +1,6 @@
-MOV A,#20
+	MOV A,#20
 MOV A,#10
-MOV R0,A
+mov r0,a
 MOV R1,A
 XRL A,R0
-MOV A,@1020
-
+MOV A,@10

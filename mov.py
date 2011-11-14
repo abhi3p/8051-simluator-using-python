@@ -487,10 +487,10 @@ def OP_FF(pcntr):
 
 
 
-def OP_C0(pcntr)
+def OP_C0(pcntr):
 	""" PUSH data addr"""
 
-def OP_0(pcntr)
+def OP_0(pcntr):
 	""" POP data addr"""	
 
 
