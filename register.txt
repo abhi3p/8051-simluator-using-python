@@ -1,0 +1,11 @@
+Accumulator A 	 = 	0x0
+Registor R0 	 = 	0x0
+Registor R1 	 = 	0x0
+Registor R2 	 = 	0x0
+Registor R3 	 = 	0x0
+Registor R4 	 = 	0x0
+Registor R5 	 = 	0x0
+Registor R6 	 = 	0x0
+Registor R7 	 = 	0x0
+Program Status Word (PSW) 	 = 	0b00000000
+Program Counter PC 	 = 	0
