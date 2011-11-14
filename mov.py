@@ -12,7 +12,7 @@ def OP_74(pcntr):
 def OP_75(pcntr):
 	""" MOV dataaddr,#data"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(pcntr)
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	pcntr=pcntr+1
 	UC.RAM[temp]=UC.ROM[pcntr]
 	pcntr=pcntr+1
