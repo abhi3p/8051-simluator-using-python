@@ -21,17 +21,29 @@ def GUI(filename):
 				expand=YES,
 				)  
 
-			#bottom frame
-			self.bottom_frame = Frame(self.myContainer1, 
+			#bottom frame1
+			self.bottom_frame1 = Frame(self.myContainer1, 
 				borderwidth=5,  relief=RAISED,
+				width=1005,
 				height=500, 
 				background="gray",
 				)   
-			self.bottom_frame.pack(side=TOP,
+			self.bottom_frame1.pack(side=LEFT,
 				fill=BOTH, 
 				expand=YES,
 				)  
 
+			#bottom frame2
+			self.bottom_frame2 = Frame(self.myContainer1, 
+				borderwidth=5,  relief=RAISED,
+				width=395,
+				height=500, 
+				background="gray",
+				)   
+			self.bottom_frame2.pack(side=RIGHT,
+				fill=BOTH, 
+				expand=YES,
+				)  
 				
 			# left_frame        
 			self.left_frame = Frame(self.top_frame, background="gray",
@@ -174,15 +186,15 @@ def GUI(filename):
 
 			)			
 			
-			### Bottom Frame Contents: Registers and Memory Contents" 
+			### Bottom Frame1 Contents: Registers and Memory Contents" 
 			fixedFont = Pmw.logicalfont('Times', sizeIncr=-1, weight='bold')
-			self.st = Pmw.ScrolledText(self.bottom_frame,
+			self.st = Pmw.ScrolledText(self.bottom_frame1,
 			labelpos = 'n',
 			label_text='Log Messages',
 			label_font=('Times', 15),
 
 			usehullsize = 1,
-			hull_width = 1400,
+			hull_width = 1005,
 			hull_height = 500,
 			text_wrap='none',
 			text_font = fixedFont,
@@ -199,6 +211,30 @@ def GUI(filename):
 
 			)
 			
+			### Bottom Frame2 Contents: Registers and Memory Contents" 
+			fixedFont = Pmw.logicalfont('Times', sizeIncr=-1, weight='bold')
+			self.st = Pmw.ScrolledText(self.bottom_frame2,
+			labelpos = 'n',
+			label_text='Developed By:',
+			label_font=('Times', 15),
+
+			usehullsize = 1,
+			hull_width = 395,
+			hull_height = 500,
+			text_wrap='none',
+			text_font = fixedFont,
+
+			text_padx = 4,
+			text_pady = 4,
+			)
+			self.st.importfile('members.txt');
+			self.st.pack(padx = 5, pady = 5, fill = 'both', expand = 1)
+
+			# Prevent users' modifying text and headers
+			self.st.configure(
+		    	text_state = 'disabled',
+
+			)
 
 	root = Tk()
 	root.title('8051 Simulator')
