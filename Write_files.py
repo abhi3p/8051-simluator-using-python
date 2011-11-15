@@ -6,24 +6,27 @@ def Write_files():
 	f=open('register.txt','w')
 	f.write('Accumulator A \t = \t')
 	f.write(UC.A)
-	f.write('\nRegistor R0 \t = \t')
+	f.write('\nRegisters')	
+	f.write('\nB \t = \t')
+	f.write(UC.RAM[UC.hex2dec('F0')])
+	f.write('\nR0 \t = \t')
 	f.write(UC.R0)
-	f.write('\nRegistor R1 \t = \t')
+	f.write('\nR1 \t = \t')
 	f.write(UC.R1)
-	f.write('\nRegistor R2 \t = \t')
+	f.write('\nR2 \t = \t')
 	f.write(UC.R2)
-	f.write('\nRegistor R3 \t = \t')
+	f.write('\nR3 \t = \t')
 	f.write(UC.R3)
-	f.write('\nRegistor R4 \t = \t')
+	f.write('\nR4 \t = \t')
 	f.write(UC.R4)
-	f.write('\nRegistor R5 \t = \t')
+	f.write('\nR5 \t = \t')
 	f.write(UC.R5)
-	f.write('\nRegistor R6 \t = \t')
+	f.write('\nR6 \t = \t')
 	f.write(UC.R6)
-	f.write('\nRegistor R7 \t = \t')
+	f.write('\nR7 \t = \t')
 	f.write(UC.R7)
 
-	f.write('\nProgram Status Word (PSW) \t = \t')
+	f.write('\nProgram Status Word\t = \t')
 	f.write(UC.PSW)
 
 	f.write('\nProgram Counter PC \t = \t')
@@ -31,18 +34,39 @@ def Write_files():
 	f.close()
 
 	f=open('opcode_write.txt','w')
-	f.write('\tAddress\t')
+	f.write('    Address\t')
 	f.write('\tOpcodes\n')
 
+	## Program Counter and OPCODES
 	for i in range(0,len(UC.ROM)):
-		f.write('\t  ')
+		f.write('      ')
 		f.write(UC.dec2hex(i))
-		f.write(' \t \t ')
+		f.write(' \t \t  ')
 		f.write(UC.ROM[i])
 		f.write('\n')
+	f.close()
+
+	## RAM
+	f=open('ram_write.txt','w')
+	f.write('                 Address\t')
+	f.write('\t        Data\n')
+
+	for i in range(0,len(UC.RAM)):
+		f.write('                  ')
+		f.write(UC.dec2hex(i))
+		f.write(' \t       \t         ')
+		f.write(UC.RAM[i])
+		f.write('\n')
+
 
 	f.close()
 
+	## Log File
+	f=open('log_write.txt','w')
+	for i in range(0,UC.logcnt):
+		f.write(UC.log[i])
+		f.write('\n')
+	f.close()
 
 
 

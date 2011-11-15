@@ -1,11 +1,13 @@
 Accumulator A 	 = 	0x0
-Registor R0 	 = 	10
-Registor R1 	 = 	10
-Registor R2 	 = 	0x0
-Registor R3 	 = 	0x0
-Registor R4 	 = 	0x0
-Registor R5 	 = 	0x0
-Registor R6 	 = 	0x0
-Registor R7 	 = 	0x0
-Program Status Word (PSW) 	 = 	0b00000000
-Program Counter PC 	 = 	9
+Registers
+B 	 = 	4F
+R0 	 = 	10
+R1 	 = 	10
+R2 	 = 	0x0
+R3 	 = 	0x0
+R4 	 = 	0x0
+R5 	 = 	0x0
+R6 	 = 	0x0
+R7 	 = 	0x0
+Program Status Word	 = 	0b00000000
+Program Counter PC 	 = 	12

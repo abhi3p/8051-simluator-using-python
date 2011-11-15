@@ -37,7 +37,7 @@ def GUI():
 			self.left_frame = Frame(self.top_frame, background="gray",
 				borderwidth=5,  relief=RAISED,
 				height=500, 
-				width=465, 
+				width=320, 
 				)
 			self.left_frame.pack(side=LEFT,
 				fill=BOTH, 
@@ -48,32 +48,39 @@ def GUI():
 			### right_frame 
 			self.right_frame = Frame(self.top_frame, background="gray",
 				borderwidth=5,  relief=RAISED,
-				width=465,
+				width=320,
 				)
 			self.right_frame.pack(side=RIGHT,
 				fill=BOTH, 
 				expand=YES,
 				)  
 
-			### center_frame 
-			self.center_frame = Frame(self.top_frame, background="gray",
+			### center_frame RIGHT
+			self.center_frame1 = Frame(self.top_frame, background="gray",
 				borderwidth=5,  relief=RAISED,
-				width=465,
+				width=320,
 				)
-			self.center_frame.pack(side=RIGHT,
+			self.center_frame1.pack(side=RIGHT,
 				fill=BOTH, 
 				expand=YES,
 				)  		
-
+			### centre_frame LEFT
+			self.center_frame2 = Frame(self.top_frame, background="gray",
+				borderwidth=5,  relief=RAISED,
+				width=320,
+				)
+			self.center_frame2.pack(side=LEFT,
+				fill=BOTH, 
+				expand=YES,
+				)  		
 			### Left Frame Contents: Assembly Language Code" 
 			fixedFont = Pmw.logicalfont('Times', sizeIncr=-1, weight='bold')
 			self.st = Pmw.ScrolledText(self.left_frame,
 			labelpos = 'n',
 			label_text='Assembly Language Code',
 			label_font=('Times', 15),
-			
 			usehullsize = 1,
-			hull_width = 465,
+			hull_width = 320,
 			hull_height = 500,
 			text_wrap='none',
 			text_font = fixedFont,
@@ -99,7 +106,7 @@ def GUI():
 			label_font=('Times', 15),
 
 			usehullsize = 1,
-			hull_width = 465,
+			hull_width = 320,
 			hull_height = 500,
 			text_wrap='none',
 			text_font = fixedFont,
@@ -119,13 +126,38 @@ def GUI():
 
 			### Center Frame Contents: Registers and Memory Contents" 
 			fixedFont = Pmw.logicalfont('Times', sizeIncr=-1, weight='bold')
-			self.st = Pmw.ScrolledText(self.center_frame,
+			self.st = Pmw.ScrolledText(self.center_frame1,
+			labelpos = 'n',
+			label_text='RAM',
+			label_font=('Times', 15),
+
+			usehullsize = 1,
+			hull_width = 320,
+			hull_height = 500,
+			text_wrap='none',
+			text_font = fixedFont,
+
+			text_padx = 4,
+			text_pady = 4,
+			)
+			self.st.importfile('ram_write.txt');
+			self.st.pack(padx = 5, pady = 5, fill = 'both', expand = 1)
+
+			# Prevent users' modifying text and headers
+			self.st.configure(
+		    	text_state = 'disabled',
+
+			)
+		
+			### Center Frame Contents: Registers and Memory Contents" 
+			fixedFont = Pmw.logicalfont('Times', sizeIncr=-1, weight='bold')
+			self.st = Pmw.ScrolledText(self.center_frame2,
 			labelpos = 'n',
 			label_text='Program Memory & Opcodes',
 			label_font=('Times', 15),
 
 			usehullsize = 1,
-			hull_width = 465,
+			hull_width = 320,
 			hull_height = 500,
 			text_wrap='none',
 			text_font = fixedFont,
@@ -140,13 +172,13 @@ def GUI():
 			self.st.configure(
 		    	text_state = 'disabled',
 
-			)
-		
+			)			
+			
 			### Bottom Frame Contents: Registers and Memory Contents" 
 			fixedFont = Pmw.logicalfont('Times', sizeIncr=-1, weight='bold')
 			self.st = Pmw.ScrolledText(self.bottom_frame,
 			labelpos = 'n',
-			label_text='Others',
+			label_text='Log Messages',
 			label_font=('Times', 15),
 
 			usehullsize = 1,
@@ -158,7 +190,7 @@ def GUI():
 			text_padx = 4,
 			text_pady = 4,
 			)
-			self.st.importfile('test.asm');
+			self.st.importfile('log_write.txt');
 			self.st.pack(padx = 5, pady = 5, fill = 'both', expand = 1)
 
 			# Prevent users' modifying text and headers

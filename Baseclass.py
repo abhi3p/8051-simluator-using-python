@@ -17,7 +17,9 @@ class BaseClass8051:
 	R7=hex(0)
 	#B=RAM[240] i.e. F0
 	#SP = RAM[129] i.e. 81
-
+	log=['0']*4096
+	logcnt=-1
+	flag=0
 	PSW=bin(0)+'0000000'
 	PC=0
 	DPTR=0

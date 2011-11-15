@@ -30,3 +30,8 @@ def Read_Code():
 	UC.PC=len(opcode)
 	print UC.ROM[0:20]
 	print UC.PC
+	
+	if UC.flag == 0:
+		UC.logcnt=UC.logcnt+1
+		UC.log[UC.logcnt]="Program completed succefully"
+		print UC.log[UC.logcnt]
