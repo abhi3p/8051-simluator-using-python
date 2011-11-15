@@ -3,8 +3,8 @@ from decoder import *
 from Baseclass import *
 from pylab import *
 
-def Read_Code():
-	f=open('test.asm')
+def Read_Code(filename):
+	f=open(filename)
 	asm_code=f.read().strip().upper()
 	print asm_code
 	asm_code_list=asm_code
@@ -20,7 +20,7 @@ def Read_Code():
 		if (asm_code_list[count]==''):
 			pass
 		else:
-			opcode+=decode(n,count+1)
+			opcode+=decode(n,len(opcode),count+1)
 		if UC.flag == 1:
 			break		
 		count=count+1				

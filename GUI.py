@@ -6,7 +6,7 @@ from Baseclass import *
 from decoder import *
 
 ######## GUI FILE #############
-def GUI():
+def GUI(filename):
 	class MyApp:
 		def __init__(self, parent):
 		
@@ -88,7 +88,7 @@ def GUI():
 			text_padx = 4,
 			text_pady = 4,
 			)
-			self.st.importfile('test.asm');
+			self.st.importfile(filename);
 			self.st.pack(padx = 5, pady = 5, fill = 'both', expand = 1)
 			
 

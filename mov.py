@@ -51,7 +51,7 @@ def OP_79(pcntr):
 def OP_7A(pcntr):
 	""" MOV R2, #data"""
 	pcntr=pcntr+1
-	UC.R3=UC.ROM[pcntr]
+	UC.R2=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	return(pcntr)
 
@@ -493,22 +493,3 @@ def OP_C0(pcntr):
 def OP_0(pcntr):
 	""" POP data addr"""	
 
-
-
-
-
-
-
-
-
- 
-#UC.R7=UC.dec2hex(14)
-#UC.ROM[13] = UC.dec2hex(0)
-#UC.ROM[14] = UC.dec2hex(1)
-
-#pcntr=OP_8F(12)
-
-
-#print UC.R7
-#print pcntr
-#print UC.MEM[1,0]

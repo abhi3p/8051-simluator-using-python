@@ -9,10 +9,6 @@ from decode_logical import *
 
 def runner():
 	pcntr_run = 0
-	UC.R0 = '12'
-	print UC.PC
-	print pcntr_run
-	
 	while pcntr_run < UC.PC:
 			
 		if UC.ROM[pcntr_run] == '00':
@@ -313,7 +309,6 @@ def runner():
 			pcntr_run=OP_8F(pcntr_run)
 	
 		elif UC.ROM[pcntr_run] == '90':
-#			print "sdf %d" %(pcntr_run)
 			pcntr_run=OP_90(pcntr_run)
 		elif UC.ROM[pcntr_run] == '91':
 			pcntr_run=OP_91(pcntr_run)
@@ -543,8 +538,6 @@ def runner():
 			pcntr_run=OP_FE(pcntr_run)
 		elif UC.ROM[pcntr_run] == 'FF':
 			pcntr_run=OP_FF(pcntr_run)
-	
-		print UC.A
 
 
 

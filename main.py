@@ -4,9 +4,8 @@ from runner import *
 from Write_files import *
 from GUI import *
 
-
-Read_Code()
+filename='test-label.asm'
+Read_Code(filename)
 runner()
 Write_files()
-GUI()
-
+GUI(filename)

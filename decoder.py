@@ -32,18 +32,18 @@ def splitcs(instrcs):
 	elif len(temp) == 3:
 		return temp[0].strip().split(' ') + [temp[1].strip()] + [temp[2].strip()]
 
-def splitinst(instr):
+def splitinst(instr,lenopcode):
 	#--- Split 'LABEL : MOV A,#24' into ['MOV','A','#24'] ---#
 	temp = instr.split(':')
 	if len(temp) == 1:
 		return splitcs(temp[0])
 	else:
 		label_list.append(temp[0].strip())
-		label_dict[temp[0].strip()] = UC.dec2hex(len(opcode))
+		label_dict[temp[0].strip()] = UC.dec2hex(lenopcode)
 		return splitcs(temp[1].strip())
 
-def decode(instruction,count):
-	instsplit = splitinst(instruction.upper())
+def decode(instruction,lenopcode,count):
+	instsplit = splitinst(instruction.upper(),lenopcode)
 	#--- Decode the splitted instruction ['MOV','A','7A'] to ['E5','7A'] ---#
 	print instsplit
 	temp2 = []

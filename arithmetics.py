@@ -578,8 +578,3 @@ def OP_A4(pcntr):
 		setpsw(2)
 	pcntr += 1
 	return pcntr
-
-#UC.A = '7D'
-#pc = OP_94(1)
-#print UC.A, pc
-#print UC.PSW, UC.A
