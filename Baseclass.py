@@ -20,6 +20,7 @@ class BaseClass8051:
 	log=['0']*4096
 	logcnt=-1
 	flag=0
+#	offcheck=0
 	PSW=bin(0)+'0000000'
 	PC=0
 	DPTR=0

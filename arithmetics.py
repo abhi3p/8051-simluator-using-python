@@ -18,17 +18,6 @@ def addacc(lsb,msb):
 		else:
 			UC.A = msb[1]+lsb[1]
 
-def cpl2(value):
-	temp1 = ''
-	temp2 = UC.hex2bin(value)
-	for n in range(0,len(temp2)):
-		if temp2[n] == '0':
-			temp1 += '1'
-		else:
-			temp1 += '0'
-	temp1 = UC.incr(UC.bin2hex(temp1),1)
-	return temp1
-
 def OP_04(pcntr):
 	#--- INC A ---#
 	UC.A = UC.incr(UC.A,1)

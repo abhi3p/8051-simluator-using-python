@@ -44,6 +44,10 @@ from Baseclass import *
 
 #ROM = ['01','10','02','10','11','20','10','11','21','10','30','10','11','40','10','41','10','50','10','60','10','61','10', '70','10','73','80','10','81','10','A1','10','B4','12','13','B5','12','13','B6','12','13','B7','12','13','B8','12','13', 'B9','12','13','BA','12','13','BB','12','13','BC','12','13','BD','12','13','BE','12','13','BF','12','13','C1','10','D5','12','13','D8','10','D9','10','DA','10','DB','10','DC','10','DD','10','DE','10','DF','10','E1','10']
 
+def OP_00(pcntr):
+	pcntr=pcntr+1
+	return pcntr
+
 def OP_02(pcntr):
 	"""LJMP 3 byte istruction with 2 byte of address"""
 	pcntr=pcntr+1
@@ -57,49 +61,65 @@ def OP_02(pcntr):
 def OP_20(pcntr):
 	"""JB 3 byte istruction with 2 byte of address"""
 	pcntr=pcntr+1
-	addr1=UC.ROM[pcntr]
+	bit_addr=UC.ROM[pcntr]
 	pcntr=pcntr+1
-	addr2=UC.ROM[pcntr]
-	adr=adr1+adr2
-	pcntr=UC.hex2dec(adr)
+	addr=UC.ROM[pcntr]
+	if UC.hex2dec(UC.RAM[bit_addr])==1:
+	    pcntr=pcntr+UC.hex2dec(adr)
+	else:
+	    pcntr=pcntr+1
 	return pcntr
 
 def OP_30(pcntr):
 	"""JNB 3 byte istruction with 2 byte of address"""
 	pcntr=pcntr+1
-	addr1=UC.ROM[pcntr]
+	bit_addr=UC.ROM[pcntr]
 	pcntr=pcntr+1
-	addr2=UC.ROM[pcntr]
-	adr=adr1+adr2
-	pcntr=UC.hex2dec(adr)
+	addr=UC.ROM[pcntr]
+	if UC.hex2dec(UC.RAM[bit_addr])==0:
+	    pcntr=pcntr+UC.hex2dec(adr)
+	else:
+	    pcntr=pcntr+1	
 	return pcntr
 
 def OP_40(pcntr):
 	"""JC 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+UC.hex2dec(offset)
+	if UC.hex2dec(UC.PSW[7])==1:
+	    pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
 	return pcntr
 
 def OP_50(pcntr):
 	"""JNC 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+UC.hex2dec(offset)
+	if UC.hex2dec(UC.PSW[7])==0:
+	    pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
 	return pcntr
 
 def OP_60(pcntr):
 	"""JZ 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+UC.hex2dec(offset)
+	if UC.hex2dec(UC.A)==0:
+	    pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
 	return pcntr
 
 def OP_70(pcntr):
 	"""JNZ 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+UC.hex2dec(offset)
+	if UC.hex2dec(UC.A)!=0:
+	    pcntr=pcntr+UC.hex2dec(offset)
+	else:
+	    pcntr=pcntr+1
 	return pcntr
 
 def OP_73(pcntr):
@@ -111,7 +131,12 @@ def OP_80(pcntr):
 	"""SJMP 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	pcntr=pcntr+UC.hex2dec(offset)
+	if UC.offcheck == 1:
+		temp = UC.hex2dec(offset)
+		print temp
+		pcntr=pcntr+UC.hex2dec(offset)
+	else:
+		pcntr=pcntr+UC.hex2dec(offset)-256
 	return pcntr
 
 def OP_B4(pcntr):
@@ -120,7 +145,7 @@ def OP_B4(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.A!=immed_data:
+	if UC.hex2dec(UC.A)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -132,7 +157,7 @@ def OP_B5(pcntr):
 	adr_lower=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.A!=UC.ROM[adr_lower]:
+	if UC.hex2dec(UC.A)!=UC.hex2dec(UC.ROM[adr_lower]):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -144,7 +169,7 @@ def OP_B6(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if ROM[UC.R0]!=immed_data:
+	if UC.hex2dec(ROM[UC.R0])!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -156,7 +181,7 @@ def OP_B7(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if ROM[UC.R1]!=immed_data:
+	if UC.hex2dec(ROM[UC.R1])!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -168,7 +193,7 @@ def OP_B8(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R0!=immed_data:
+	if UC.hex2dec(UC.R0)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -180,7 +205,7 @@ def OP_B9(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R1!=immed_data:
+	if UC.hex2dec(UC.R1)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -192,7 +217,7 @@ def OP_BA(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R2!=immed_data:
+	if UC.hex2dec(UC.R2)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -204,7 +229,7 @@ def OP_BB(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R3!=immed_data:
+	if UC.hex2dec(UC.R3)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -216,7 +241,7 @@ def OP_BC(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R4!=immed_data:
+	if UC.hex2dec(UC.R4)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -228,7 +253,7 @@ def OP_BD(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R5!=immed_data:
+	if UC.hex2dec(UC.R5)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -240,7 +265,7 @@ def OP_BE(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R6!=immed_data:
+	if UC.hex2dec(UC.R6)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -252,7 +277,7 @@ def OP_BF(pcntr):
 	immed_data=UC.ROM[pcntr]
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.R7!=immed_data:
+	if UC.hex2dec(UC.R7)!=UC.hex2dec(immed_data):
             pcntr=pcntr+UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
@@ -303,7 +328,12 @@ def OP_DA(pcntr):
 	decr2=UC.hex2dec(UC.R2)-1
 	UC.R2=UC.dec2hex(decr2)
 	if UC.hex2dec(UC.R2)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+	    temp = UC.hex2dec(offset)-256
+	    print temp
+	    if UC.offcheck == 1:
+	            pcntr=pcntr+UC.hex2dec(offset)
+	    else:
+	            pcntr=pcntr+UC.hex2dec(offset)-256
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -368,6 +398,11 @@ def OP_DF(pcntr):
 	    pcntr=pcntr+1
 	return pcntr
 
+#00	1	NOP
+#11	2	ACALL	addr11
+#12	3	LCALL	addr16
+#22	1	RET
+#32	1	RETI
 
 
 

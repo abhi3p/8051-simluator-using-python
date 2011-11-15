@@ -40,3 +40,14 @@ def resetpsw(n):
 	elif n == 7 and UC.PSW[2] == '1':
 		temp -= 128
 	UC.PSW = '0b'+UC.hex2bin(UC.dec2hex(int(temp)))
+
+def cpl2(value):
+	temp1 = ''
+	temp2 = UC.hex2bin(value)
+	for n in range(0,len(temp2)):
+		if temp2[n] == '0':
+			temp1 += '1'
+		else:
+			temp1 += '0'
+	temp1 = UC.incr(UC.bin2hex(temp1),1)
+	return temp1

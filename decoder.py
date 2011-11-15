@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from Baseclass import *
+from psw import *
 
 #opcode = []
 #--- Dictionary of opcodes ---#
@@ -12,7 +13,10 @@ sfrs_dict = {'B': 'F0', 'P0': '80', 'P1': '90', 'P2': 'A0', 'P3': 'B0', 'PSW': '
 sfrs_list = ['B','P0','P1','P2','P3','PSW','SP','DPL','DPH']
 
 #--- All possible nemonics ---#
-codes = ['NOP', 'AJMP', 'LJMP', 'RR', 'INC', 'JBC', 'ACALL', 'LCALL', 'RRC', 'DEC', 'JB', 'RET', 'RL', 'ADD', 'JNB', 'RETI', 'RLC', 'ADDC', 'JC', 'ORL', 'JNC', 'ANL', 'JZ', 'XRL', 'JNZ', 'JMP', 'MOV', 'SJMP', 'MOVC', 'DIV', 'SUBB', 'MUL', 'CPL', 'CJNE', 'PUSH', 'CLR', 'SWAP', 'XCH', 'POP', 'SETB', 'DA', 'XCHD', 'DJNZ', 'MOVX']
+codes = ['NOP', 'RR', 'INC', 'RRC', 'DEC', 'RL', 'ADD', 'RLC', 'ADDC', 'ORL', 'ANL', 'XRL', 'MOV', 'MOVC', 'DIV', 'SUBB', 'MUL', 'CPL', 'PUSH', 'CLR', 'SWAP', 'XCH', 'POP', 'SETB', 'DA', 'XCHD', 'MOVX', 'DJNZ']
+
+#--- All jump instruction ---#
+jumps = ['AJMP', 'LJMP', 'JBC', 'ACALL', 'LCALL', 'JB', 'RET', 'JNB', 'RETI', 'JC', 'JNC', 'JZ', 'JNZ', 'JMP', 'SJMP', 'CJNE', 'DJNZ']
 
 #--- Registers ---#
 regis = ['A','C','R0','R1','R2','R3','R4','R5','R6','R7','@R0','@R1','DPTR','@DPTR','@A+DPTR','@A+PC','AB']
@@ -56,13 +60,10 @@ def decode(instruction,lenopcode,count):
 			UC.flag = 1
 			UC.logcnt=UC.logcnt+1
 			UC.log[UC.logcnt]= "Invalid Instruction. Error in line %d " %(count)
-	
 		except:
 			UC.flag = 1
 			UC.logcnt=UC.logcnt+1
 			UC.log[UC.logcnt]= "Check your code d000d in line %d " %(count)
-			
-		
 #		print opctemp
 		return opctemp
 	elif instsplit[0] in codes:
@@ -93,7 +94,16 @@ def decode(instruction,lenopcode,count):
 				if instsplit[n] in sfrs_list:	#--- Decode SFR ---#
 					temp2.append(sfrs_dict[instsplit[n]])
 				elif instsplit[n] in label_list:
-					temp2.append(label_dict[instsplit[n]])
+					temp3 = int(UC.hex2dec(label_dict[instsplit[n]])-UC.hex2dec(UC.dec2hex(lenopcode+1)))
+					if temp3 >= 0:
+						temp3 = UC.dec2hex(temp3)
+						UC.offcheck = 1						
+					else:
+						temp3 = UC.dec2hex(int(UC.hex2dec(label_dict[instsplit[n]])+UC.hex2dec(cpl2(UC.dec2hex(lenopcode+1)))))
+						UC.offcheck = 0
+#						temp3 = cpl2(temp3)
+					temp2.append(temp3)
+					print lenopcode+1, temp3
 				elif len(instsplit[n]) == 2:
 					temp2.append(instsplit[n])
 				elif len(instsplit[n]) == 3:	#--- decode code addr of kind 0F3 ---#
@@ -106,6 +116,11 @@ def decode(instruction,lenopcode,count):
 
 		opctemp += [opc_dict[temp]] + temp2
 #		print opctemp
+		return opctemp
+	elif instsplit[0] in jumps:
+		temp = instsplit[0] + '-'
+		label_dict[instsplit[0]] = '00'
+		opctemp += [opc_dict[temp]]
 		return opctemp
 	else:
 		UC.flag = 1

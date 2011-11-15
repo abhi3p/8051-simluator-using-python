@@ -35,5 +35,5 @@ def Read_Code(filename):
 	
 	if UC.flag == 0:
 		UC.logcnt=UC.logcnt+1
-		UC.log[UC.logcnt]="Program completed succefully"
+		UC.log[UC.logcnt]="Program completed successfully"
 		print UC.log[UC.logcnt]
