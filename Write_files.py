@@ -31,12 +31,13 @@ def Write_files():
 	f.close()
 
 	f=open('opcode_write.txt','w')
-	f.write('Address\t')
+	f.write('\tAddress\t')
 	f.write('\tOpcodes\n')
 
 	for i in range(0,len(UC.ROM)):
+		f.write('\t  ')
 		f.write(UC.dec2hex(i))
-		f.write('\t=\t')
+		f.write(' \t \t ')
 		f.write(UC.ROM[i])
 		f.write('\n')
 
