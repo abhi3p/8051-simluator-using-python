@@ -42,17 +42,31 @@ def splitinst(instr):
 		label_dict[temp[0].strip()] = UC.dec2hex(len(opcode))
 		return splitcs(temp[1].strip())
 
-def decode(instruction):
+def decode(instruction,count):
 	instsplit = splitinst(instruction.upper())
 	#--- Decode the splitted instruction ['MOV','A','7A'] to ['E5','7A'] ---#
 	print instsplit
 	temp2 = []
 	opctemp = []
 	if len(instsplit) == 1:
-		opctemp += [opc_dict[instsplit[0]]]
+		try:
+			opctemp += [opc_dict[instsplit[0]]]
+			
+		except KeyError:
+			UC.flag = 1
+			UC.logcnt=UC.logcnt+1
+			UC.log[UC.logcnt]= "Invalid Instruction. Error in line %d " %(count)
+	
+		except:
+			UC.flag = 1
+			UC.logcnt=UC.logcnt+1
+			UC.log[UC.logcnt]= "Check your code d000d in line %d " %(count)
+			
+		
 #		print opctemp
 		return opctemp
 	elif instsplit[0] in codes:
+		temp0 = instsplit[1]
 		temp = instsplit[0]
 		for n in range(1,len(instsplit)):
 			if instsplit[n] in regis:
@@ -63,16 +77,16 @@ def decode(instruction):
 					temp2.append(instsplit[n][1:3])
 				elif len(instsplit[n]) == 4:	#--- decode data of kind #0F3 ---#
 					temp2.append(instsplit[n][2:4])
-				elif len(instsplit[n]) == 5:	#--- For DPTR ---#
+				elif len(instsplit[n]) == 5 and temp0 == 'DPTR':	#--- For DPTR ---#
 					temp2.append(instsplit[n][1:3])
 					temp2.append(instsplit[n][3:5])
-				elif len(instsplit[n]) == 6:	#--- decode data of kind #0F334 for DPTR ---#
+				elif len(instsplit[n]) == 6 and temp0 == 'DPTR':	#--- decode data of kind #0F334 for DPTR ---#
 					temp2.append(instsplit[n][2:4])
 					temp2.append(instsplit[n][4:6])
 				else:
 					UC.flag = 1					
 					UC.logcnt=UC.logcnt+1
-					UC.log[UC.logcnt]="Error typing data " + instsplit[n]	#--- Error in data ---#					
+					UC.log[UC.logcnt]="Error typing data " + instsplit[n] + " in line %d" %(count)	#--- Error in data ---#					
 #					print "Error typing data " + instsplit[n]	#--- Error in data ---#
 			else:
 				temp = temp + '-'
@@ -87,7 +101,7 @@ def decode(instruction):
 				else:
 					UC.flag = 1					
 					UC.logcnt=UC.logcnt+1
-					UC.log[UC.logcnt]=	"Error typing address " + instsplit[n]
+					UC.log[UC.logcnt]=	"Error typing address " + instsplit[n] + " in line %d" %(count)
 #					print "Error typing address " + instsplit[n]	#---- Error in address ---#
 
 		opctemp += [opc_dict[temp]] + temp2
@@ -96,7 +110,7 @@ def decode(instruction):
 	else:
 		UC.flag = 1
 		UC.logcnt=UC.logcnt+1
-		UC.log[UC.logcnt]= "Invalid Instruction"
+		UC.log[UC.logcnt]= "Invalid Instruction" + " in line %d" %(count)
 #		print "Error"
 		
 	

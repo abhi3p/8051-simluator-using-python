@@ -428,36 +428,36 @@ def OP_94(pcntr):
 def OP_95(pcntr):
 	#--- SUBB A,data addr ---#
 	pcntr += 1
-	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])))
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.ROM[pcntr])]))
 	if temp >= 0:
 		UC.A = UC.dec2hex(temp)
 		resetpsw(7)
 	else:
-		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.ROM[pcntr]))))
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.ROM[pcntr])]))))
 		setpsw(7)
 	pcntr += 1
 	return pcntr
 
 def OP_96(pcntr):
 	#--- SUBB A,@R0 ---#
-	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0[pcntr])))
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.R0[pcntr])]))
 	if temp >= 0:
 		UC.A = UC.dec2hex(temp)
 		resetpsw(7)
 	else:
-		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.R0[pcntr]))))
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.R0[pcntr])]))))
 		setpsw(7)
 	pcntr += 1
 	return pcntr
 
 def OP_97(pcntr):
 	#--- SUBB A,@R1 ---#
-	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1[pcntr])))
+	temp = int(UC.hex2dec(UC.A)-UC.hex2dec(UC.RAM[UC.hex2dec(UC.R1[pcntr])]))
 	if temp >= 0:
 		UC.A = UC.dec2hex(temp)
 		resetpsw(7)
 	else:
-		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.R1[pcntr]))))
+		UC.A = UC.dec2hex(int(UC.hex2dec(UC.A)+UC.hex2dec(cpl2(UC.RAM[UC.hex2dec(UC.R1[pcntr])]))))
 		setpsw(7)
 	pcntr += 1
 	return pcntr
@@ -580,6 +580,6 @@ def OP_A4(pcntr):
 	return pcntr
 
 #UC.A = '7D'
-pc = OP_94(1)
-print UC.A, pc
-print UC.PSW, UC.A
+#pc = OP_94(1)
+#print UC.A, pc
+#print UC.PSW, UC.A

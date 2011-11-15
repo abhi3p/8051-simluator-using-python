@@ -93,7 +93,7 @@ def OP_7F(pcntr):
 def OP_83(pcntr):
 	""" MOVC A,@A+PC"""
 	tempA=UC.hex2dec(UC.A)
-	tempPC=UC.hex2dec(UC.PC)
+	tempPC=UC.hex2dec(UC.ROM)
 	UC.A=UC.RAM[tempA+tempPC]
 	pcntr=pcntr+1
 	return pcntr
@@ -101,9 +101,9 @@ def OP_83(pcntr):
 def OP_85(pcntr):
 	""" MOV dataaddr, dataaddr"""
 	pcntr=pcntr+1
-	temp1=UC.hex2dec(UC.PC[pcntr])
+	temp1=UC.hex2dec(UC.ROM[pcntr])
 	pcntr=pcntr+1
-	temp2=UC.hex2dec(UC.PC[pcntr])
+	temp2=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp1]=UC.RAM[temp2]
 	pcntr=pcntr+1
 	return(pcntr)
@@ -111,7 +111,7 @@ def OP_85(pcntr):
 def OP_86(pcntr):
 	""" MOV dataaddr, @R0"""
 	pcntr=pcntr+1
-	temp1=UC.hex2dec(UC.PC[pcntr])
+	temp1=UC.hex2dec(UC.ROM[pcntr])
 	temp2=UC.hex2dec(UC.R0)
 	UC.RAM[temp1]=UC.RAM[temp2]
 	pcntr=pcntr+1
@@ -121,7 +121,7 @@ def OP_86(pcntr):
 def OP_87(pcntr):
 	""" MOV dataaddr, @R1"""
 	pcntr=pcntr+1
-	temp1=UC.hex2dec(UC.PC[pcntr])
+	temp1=UC.hex2dec(UC.ROM[pcntr])
 	temp2=UC.hex2dec(UC.R1)
 	UC.RAM[temp1]=UC.RAM[temp2]
 	pcntr=pcntr+1
@@ -130,7 +130,7 @@ def OP_87(pcntr):
 def OP_88(pcntr):
 	""" MOV dataaddr, R0"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R0
 	pcntr=pcntr+1
 	return pcntr
@@ -138,7 +138,7 @@ def OP_88(pcntr):
 def OP_89(pcntr):
 	""" MOV dataaddr, R1"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R1
 	pcntr=pcntr+1
 	return pcntr
@@ -146,7 +146,7 @@ def OP_89(pcntr):
 def OP_8A(pcntr):
 	""" MOV dataaddr, R2"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R2
 	pcntr=pcntr+1
 	return pcntr
@@ -154,7 +154,7 @@ def OP_8A(pcntr):
 def OP_8B(pcntr):
 	""" MOV dataaddr, R3"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R3
 	pcntr=pcntr+1
 	return pcntr
@@ -162,7 +162,7 @@ def OP_8B(pcntr):
 def OP_8C(pcntr):
 	""" MOV dataaddr, R4"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R4
 	pcntr=pcntr+1
 	return pcntr
@@ -170,7 +170,7 @@ def OP_8C(pcntr):
 def OP_8D(pcntr):
 	""" MOV dataaddr, R5"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R5
 	pcntr=pcntr+1
 	return pcntr
@@ -178,7 +178,7 @@ def OP_8D(pcntr):
 def OP_8E(pcntr):
 	""" MOV dataaddr, R6"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R6
 	pcntr=pcntr+1
 	return pcntr
@@ -186,7 +186,7 @@ def OP_8E(pcntr):
 def OP_8F(pcntr):
 	""" MOV dataaddr, R7"""
 	pcntr=pcntr+1
-	temp=UC.hex2dec(UC.PC[pcntr])
+	temp=UC.hex2dec(UC.ROM[pcntr])
 	UC.RAM[temp]=UC.R7
 	pcntr=pcntr+1
 	return pcntr
@@ -194,9 +194,9 @@ def OP_8F(pcntr):
 def OP_90(pcntr):
 	""" MOV DPTR, #data"""
 	pcntr=pcntr+1
-	temp1=UC.PC[pcntr]
+	temp1=UC.ROM[pcntr]
 	pcntr=pcntr+1
-	temp2=UC.PC[pcntr]
+	temp2=UC.ROM[pcntr]
 	temp3=temp1+temp2
 	UC.DPTR=temp3
 	pcntr=pcntr+1

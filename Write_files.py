@@ -63,7 +63,7 @@ def Write_files():
 
 	## Log File
 	f=open('log_write.txt','w')
-	for i in range(0,UC.logcnt):
+	for i in range(0,UC.logcnt+1):
 		f.write(UC.log[i])
 		f.write('\n')
 	f.close()

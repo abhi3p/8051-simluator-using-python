@@ -20,8 +20,10 @@ def Read_Code():
 		if (asm_code_list[count]==''):
 			pass
 		else:
-			opcode+=decode(n)
-		count=count+1
+			opcode+=decode(n,count+1)
+		if UC.flag == 1:
+			break		
+		count=count+1				
 	print opcode
 	
 	for n in range(0,len(opcode)):

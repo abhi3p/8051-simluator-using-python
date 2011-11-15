@@ -2,7 +2,7 @@
 from pylab import *
 from Baseclass import *
 from mov import *
-#from arithmetics import *
+from arithmetics import *
 from jmp import *
 from decode_logical import *
 
@@ -313,6 +313,7 @@ def runner():
 			pcntr_run=OP_8F(pcntr_run)
 	
 		elif UC.ROM[pcntr_run] == '90':
+#			print "sdf %d" %(pcntr_run)
 			pcntr_run=OP_90(pcntr_run)
 		elif UC.ROM[pcntr_run] == '91':
 			pcntr_run=OP_91(pcntr_run)
