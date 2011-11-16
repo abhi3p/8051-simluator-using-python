@@ -1,0 +1,8 @@
+MOV A,#020
+MOV A,#10
+MOV B,#12
+MOV DPTR,#02343
+mov r0,a
+MOV R1,A
+mov 0f3,#24
+MOV A,0f3
