@@ -392,11 +392,11 @@ def OP_3F(pcntr):
 
 def OP_84(pcntr):
 	#--- DIV AB ---#
-	if UC.B == '00':
+	if UC.RAM[UC.hex2dec('F0')] == '00':
 		setpsw(2)
 	else:
-		temp = UC.dec2hex(int(UC.hex2dec(UC.A)/UC.hex2dec(UC.B)))
-		UC.B = UC.dec2hex(int(UC.hex2dec(UC.A)%UC.hex2dec(UC.B)))
+		temp = UC.dec2hex(int(UC.hex2dec(UC.A)/UC.hex2dec(UC.RAM[UC.hex2dec('F0')])))
+		UC.RAM[UC.hex2dec('F0')] = UC.dec2hex(int(UC.hex2dec(UC.A)%UC.hex2dec(UC.RAM[UC.hex2dec('F0')])))
 		UC.A = temp
 	pcntr += 1
 	return pcntr
@@ -553,16 +553,16 @@ def OP_A3(pcntr):
 
 def OP_A4(pcntr):
 	#--- MUL AB ---#
-	mult = UC.dec2hex(int(UC.hex2dec(UC.A)*UC.hex2dec(UC.B)))
+	mult = UC.dec2hex(int(UC.hex2dec(UC.A)*UC.hex2dec(UC.RAM[UC.hex2dec('F0')])))
 	if len(mult) == 2:
 		UC.A = mult
-		UC.B = UC.dec2hex(0)
+		UC.RAM[UC.hex2dec('F0')] = UC.dec2hex(0)
 	elif len(mult) == 3:
 		UC.A = mult[1:]
-		UC.B = '0'+mult[0]
+		UC.RAM[UC.hex2dec('F0')] = '0'+mult[0]
 	elif len(mult) == 4:
 		UC.A = mult[2:]
-		UC.B = mult[:2]
+		UC.RAM[UC.hex2dec('F0')] = mult[:2]
 	else:
 		setpsw(2)
 	pcntr += 1

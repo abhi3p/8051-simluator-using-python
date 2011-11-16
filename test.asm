@@ -5,3 +5,4 @@ MOV DPTR,#02343
 MOV B,#4F
 mov 0f3,#24
 MOV A,0f3
+div ab

@@ -1,6 +1,6 @@
-Accumulator A 	 = 	24
+Accumulator A 	 = 	0x0
 Registers
-B 	 = 	4F
+B 	 = 	0x0
 R0 	 = 	0x0
 R1 	 = 	0x0
 R2 	 = 	0x0
@@ -10,4 +10,4 @@ R5 	 = 	0x0
 R6 	 = 	0x0
 R7 	 = 	0x0
 Program Status Word	 = 	0b00000000
-Program Counter PC 	 = 	18
+Program Counter PC 	 = 	1

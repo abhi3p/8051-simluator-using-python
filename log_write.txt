@@ -1,1 +1,1 @@
-Program completed successfully
+Error typing data #2 in line 1

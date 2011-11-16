@@ -4,7 +4,7 @@ from runner import *
 from Write_files import *
 from GUI import *
 
-filename='test.asm'
+filename='test-div-mul.asm'
 Read_Code(filename)
 runner()
 Write_files()
