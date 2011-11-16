@@ -489,7 +489,12 @@ def OP_FF(pcntr):
 
 def OP_C0(pcntr):
 	""" PUSH data addr"""
-
-def OP_0(pcntr):
-	""" POP data addr"""	
+	pcntr=pcntr+1
+	UC.RAM[UC.SP]=UC.RAM[pcntr]
+	UC.SP=UC.SP+1
+def OP_D0(pcntr):
+	""" POP data addr"""
+	pcntr=pcntr+1
+	UC.RAM[pcntr]=UC.RAM[UC.SP]
+	UC.SP=UC.SP-1	
 

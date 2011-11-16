@@ -24,6 +24,7 @@ class BaseClass8051:
 	PSW=bin(0)+'0000000'
 	PC=0
 	DPTR=0
+	SP=0
 	MEM=[hex(0)]*65536
 
 	def hex2bin(self,hexa):
