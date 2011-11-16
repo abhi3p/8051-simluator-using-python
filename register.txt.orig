@@ -1,0 +1,23 @@
+<<<<<<< local
+Accumulator A 	 = 	24
+=======
+Accumulator A 	 = 	0x0
+>>>>>>> other
+Registers
+<<<<<<< local
+B 	 = 	12
+=======
+B 	 = 	4F
+>>>>>>> other
+R0 	 = 	10
+R1 	 = 	10
+R2 	 = 	0x0
+R3 	 = 	0x0
+R4 	 = 	0x0
+R5 	 = 	0x0
+R6 	 = 	0x0
+R7 	 = 	0x0
+Program Status Word	 = 	0b00000000
+<<<<<<< local
+Program Counter PC 	 = 	17=======
+Program Counter PC 	 = 	12>>>>>>> other
