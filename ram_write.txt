@@ -239,7 +239,7 @@
                   ED 	       	         0x0
                   EE 	       	         0x0
                   EF 	       	         0x0
-                  F0 	       	         4F
+                  F0 	       	         0x0
                   F1 	       	         0x0
                   F2 	       	         0x0
                   F3 	       	         0x0
