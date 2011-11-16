@@ -1,0 +1,4 @@
+MOV A,#4C
+SUBB A,#6E
+CPL A
+INC A
