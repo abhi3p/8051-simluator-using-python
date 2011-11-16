@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from Baseclass import *
 from psw import *
+from Read_Code import *
 
 #opcode = []
 #--- Dictionary of opcodes ---#
@@ -13,7 +14,7 @@ sfrs_dict = {'B': 'F0', 'P0': '80', 'P1': '90', 'P2': 'A0', 'P3': 'B0', 'PSW': '
 sfrs_list = ['B','P0','P1','P2','P3','PSW','SP','DPL','DPH']
 
 #--- All possible nemonics ---#
-codes = ['NOP', 'RR', 'INC', 'RRC', 'DEC', 'RL', 'ADD', 'RLC', 'ADDC', 'ORL', 'ANL', 'XRL', 'MOV', 'MOVC', 'DIV', 'SUBB', 'MUL', 'CPL', 'PUSH', 'CLR', 'SWAP', 'XCH', 'POP', 'SETB', 'DA', 'XCHD', 'MOVX', 'DJNZ']
+codes = ['NOP', 'RR', 'INC', 'RRC', 'DEC', 'RL', 'ADD', 'RLC', 'ADDC', 'ORL', 'ANL', 'XRL', 'MOV', 'MOVC', 'DIV', 'SUBB', 'MUL', 'CPL', 'PUSH', 'CLR', 'SWAP', 'XCH', 'POP', 'SETB', 'DA', 'XCHD', 'MOVX']
 
 #--- All jump instruction ---#
 jumps = ['AJMP', 'LJMP', 'JBC', 'ACALL', 'LCALL', 'JB', 'RET', 'JNB', 'RETI', 'JC', 'JNC', 'JZ', 'JNZ', 'JMP', 'SJMP', 'CJNE', 'DJNZ']
@@ -22,7 +23,6 @@ jumps = ['AJMP', 'LJMP', 'JBC', 'ACALL', 'LCALL', 'JB', 'RET', 'JNB', 'RETI', 'J
 regis = ['A','C','R0','R1','R2','R3','R4','R5','R6','R7','@R0','@R1','DPTR','@DPTR','@A+DPTR','@A+PC','AB']
 
 #--- Label empty list and dictionary ---#
-label_list = []
 label_dict = {}
 #-----------------------------------------------------------------------------------------------------------------------#
 
@@ -36,34 +36,36 @@ def splitcs(instrcs):
 	elif len(temp) == 3:
 		return temp[0].strip().split(' ') + [temp[1].strip()] + [temp[2].strip()]
 
-def splitinst(instr,lenopcode):
+def splitinst(instr,opcode,lenopcode):
 	#--- Split 'LABEL : MOV A,#24' into ['MOV','A','#24'] ---#
 	temp = instr.split(':')
 	if len(temp) == 1:
 		return splitcs(temp[0])
 	else:
-		label_list.append(temp[0].strip())
-		label_dict[temp[0].strip()] = UC.dec2hex(lenopcode)
+		if temp[0].strip() in label_dict.keys():
+			print "Exist"
+			opcode[int(UC.hex2dec(label_dict[temp[0].strip()]))] = UC.dec2hex(lenopcode)
+			label_dict[temp[0].strip()] = UC.dec2hex(lenopcode)
+		else:
+			label_dict[temp[0].strip()] = UC.dec2hex(lenopcode)
 		return splitcs(temp[1].strip())
 
-def decode(instruction,lenopcode,count):
-	instsplit = splitinst(instruction.upper(),lenopcode)
+def decode(instruction,opcode,lenopcode,count):
+	instsplit = splitinst(instruction.upper(),opcode,lenopcode)
 	#--- Decode the splitted instruction ['MOV','A','7A'] to ['E5','7A'] ---#
-	print instsplit
 	temp2 = []
 	opctemp = []
 	if len(instsplit) == 1:
 		try:
-			opctemp += [opc_dict[instsplit[0]]]
-			
+			opctemp += [opc_dict[instsplit[0]]]			
 		except KeyError:
 			UC.flag = 1
 			UC.logcnt=UC.logcnt+1
 			UC.log[UC.logcnt]= "Invalid Instruction. Error in line %d " %(count)
 		except:
 			UC.flag = 1
-			UC.logcnt=UC.logcnt+1
-			UC.log[UC.logcnt]= "Check your code d000d in line %d " %(count)
+			UC.logcnt = UC.logcnt+1
+			UC.log[UC.logcnt] = "Check your code d000d in line %d " %(count)
 #		print opctemp
 		return opctemp
 	elif instsplit[0] in codes:
@@ -85,22 +87,46 @@ def decode(instruction,lenopcode,count):
 					temp2.append(instsplit[n][4:6])
 				else:
 					UC.flag = 1					
-					UC.logcnt=UC.logcnt+1
-					UC.log[UC.logcnt]="Error typing data " + instsplit[n] + " in line %d" %(count)	#--- Error in data ---#					
-#					print "Error typing data " + instsplit[n]	#--- Error in data ---#
+					UC.logcnt = UC.logcnt+1
+					UC.log[UC.logcnt] = "Error typing data " + instsplit[n] + " in line %d" %(count)	#--- Error in data ---#					
 			else:
 				temp = temp + '-'
 				if instsplit[n] in sfrs_list:	#--- Decode SFR ---#
 					temp2.append(sfrs_dict[instsplit[n]])
-				elif instsplit[n] in label_list:
-#					temp3 = int(UC.hex2dec(label_dict[instsplit[n]])-UC.hex2dec(UC.dec2hex(lenopcode+1)))
-#					if temp3 >= 0:
+				elif len(instsplit[n]) == 2:
+					temp2.append(instsplit[n])
+				elif len(instsplit[n]) == 3 and instsplit[n][0] == '0':	#--- decode code addr of kind 0F3 ---#
+					temp2.append(instsplit[n][1:3])
+				else:
+					UC.flag = 1					
+					UC.logcnt = UC.logcnt+1
+					UC.log[UC.logcnt] =	"Error typing address " + instsplit[n] + " in line %d" %(count)
+#					print "Error typing address " + instsplit[n]	#---- Error in address ---#
+
+		opctemp += [opc_dict[temp]] + temp2
+#		print opctemp
+		return opctemp
+	elif instsplit[0] in jumps:
+		temp = instsplit[0]
+		for n in range(1,len(instsplit)):
+			if instsplit[n] in regis:
+				temp = temp + instsplit[n]
+			elif instsplit[n][0] == '#':
+				temp = temp + '#'
+				if len(instsplit[n]) == 3:
+					temp2.append(instsplit[n][1:3])
+				elif len(instsplit[n]) == 4 and instsplit[n][1] == '0':	#--- decode data of kind #0F3 ---#
+					temp2.append(instsplit[n][2:4])
+				else:
+					UC.flag = 1					
+					UC.logcnt = UC.logcnt+1
+					UC.log[UC.logcnt] = "Error typing data " + instsplit[n] + " in line %d" %(count)	#--- Error in data ---
+			else:
+				temp = temp + '-'
+				if instsplit[n] in sfrs_list:	#--- Decode SFR ---#
+					temp2.append(sfrs_dict[instsplit[n]])
+				elif instsplit[n] in label_dict.keys():
 					temp3 = label_dict[instsplit[n]]
-#						UC.offcheck = 1	
-#					else:
-#						temp3 = UC.dec2hex(int(UC.hex2dec(label_dict[instsplit[n]])+UC.hex2dec(cpl2(UC.dec2hex(lenopcode+1)))))
-#						UC.offcheck = 0
-#						temp3 = cpl2(temp3)
 					temp2.append(temp3)
 					print "Sameer"
 					print lenopcode+1, temp3
@@ -109,25 +135,17 @@ def decode(instruction,lenopcode,count):
 				elif len(instsplit[n]) == 3 and instsplit[n][0] == '0':	#--- decode code addr of kind 0F3 ---#
 					temp2.append(instsplit[n][1:3])
 				else:
-					UC.flag = 1					
-					UC.logcnt=UC.logcnt+1
-					UC.log[UC.logcnt]=	"Error typing address " + instsplit[n] + " in line %d" %(count)
-#					print "Error typing address " + instsplit[n]	#---- Error in address ---#
+					label_dict[instsplit[n]] = UC.dec2hex(lenopcode+1)
+					temp2.append(label_dict[instsplit[n]])
+					UC.logcnt = UC.logcnt+1
+					UC.log[UC.logcnt] =	"Error typing address " + instsplit[n] + " in line %d" %(count)
 
 		opctemp += [opc_dict[temp]] + temp2
-#		print opctemp
-		return opctemp
-	elif instsplit[0] in jumps:
-		temp = instsplit[0] + '-'
-		label_list.append(instsplit[1])
-		label_dict[instsplit[1]] = '00'
-		opctemp += [opc_dict[temp]]
 		return opctemp
 	else:
 		UC.flag = 1
-		UC.logcnt=UC.logcnt+1
-		UC.log[UC.logcnt]= "Invalid Instruction" + " in line %d" %(count)
-#		print "Error"
+		UC.logcnt = UC.logcnt+1
+		UC.log[UC.logcnt] = "Invalid Instruction" + " in line %d" %(count)
 		
 	
 #allinstrlist = ['INC 7A','NOP', 'AJMP 4E', 'LJMP 4E,2E', 'RR A', 'INC A', 'INC 7A', 'INC @R0', 'INC @R1', 'INC R0', 'INC R1', 'INC R2', 'INC R3', 'INC R4', 'INC R5', 'INC R6', 'INC R7', 'JBC F3,4E', 'ACALL 4E', 'LCALL 4E,2E', 'RRC A', 'DEC A', 'DEC 7A', 'DEC @R0', 'DEC @R1', 'DEC R0', 'DEC R1', 'DEC R2', 'DEC R3', 'DEC R4', 'DEC R5', 'DEC R6', 'DEC R7', 'JB F3,4E', 'AJMP 4E', 'RET', 'RL A', 'ADD A,#25', 'ADD A,7A', 'ADD A,@R0', 'ADD A,@R1', 'ADD A,R0', 'ADD A,R1', 'ADD A,R2', 'ADD A,R3', 'ADD A,R4', 'ADD A,R5', 'ADD A,R6', 'ADD A,R7', 'JNB F3,4E', 'ACALL 4E', 'RETI', 'RLC A', 'ADDC A,#25', 'ADDC A,7A', 'ADDC A,@R0', 'ADDC A,@R1', 'ADDC A,R0', 'ADDC A,R1', 'ADDC A,R2', 'ADDC A,R3', 'ADDC A,R4', 'ADDC A,R5', 'ADDC A,R6', 'ADDC A,R7', 'JC 4E', 'AJMP 4E', 'ORL 7A,A', 'ORL 7A,#25', 'ORL A,#25', 'ORL A,7A', 'ORL A,@R0', 'ORL A,@R1', 'ORL A,R0', 'ORL A,R1', 'ORL A,R2', 'ORL A,R3', 'ORL A,R4', 'ORL A,R5', 'ORL A,R6', 'ORL A,R7', 'JNC 4E', 'ACALL 4E', 'ANL 7A,A', 'ANL 7A,#25', 'ANL A,#25', 'ANL A,7A', 'ANL A,@R0', 'ANL A,@R1', 'ANL A,R0', 'ANL A,R1', 'ANL A,R2', 'ANL A,R3', 'ANL A,R4', 'ANL A,R5', 'ANL A,R6', 'ANL A,R7', 'JZ 4E', 'AJMP 4E', 'XRL 7A,A', 'XRL 7A,#25', 'XRL A,#25', 'XRL A,7A', 'XRL A,@R0', 'XRL A,@R1', 'XRL A,R0', 'XRL A,R1', 'XRL A,R2', 'XRL A,R3', 'XRL A,R4', 'XRL A,R5', 'XRL A,R6', 'XRL A,R7', 'JNZ 4E', 'ACALL 4E', 'ORL C,F3', 'JMP @A+DPTR', 'MOV A,#25', 'MOV 7A,#25', 'MOV @R0,#25', 'MOV @R1,#25', 'MOV R0,#25', 'MOV R1,#25', 'MOV R2,#25', 'MOV R3,#25', 'MOV R4,#25', 'MOV R5,#25', 'MOV R6,#25', 'MOV R7,#25', 'SJMP 4E', 'AJMP 4E', 'ANL C,F3', 'MOVC A,@A+PC', 'DIV AB', 'MOV 7A,7A', 'MOV 7A,@R0', 'MOV 7A,@R1', 'MOV 7A,R0', 'MOV 7A,R1', 'MOV 7A,R2', 'MOV 7A,R3', 'MOV 7A,R4', 'MOV 7A,R5', 'MOV 7A,R6', 'MOV 7A,R7', 'MOV DPTR,#25', 'ACALL 4E', 'MOV F3,C', 'MOVC A,@A+DPTR', 'SUBB A,#25', 'SUBB A,7A', 'SUBB A,@R0', 'SUBB A,@R1', 'SUBB A,R0', 'SUBB A,R1', 'SUBB A,R2', 'SUBB A,R3', 'SUBB A,R4', 'SUBB A,R5', 'SUBB A,R6', 'SUBB A,R7', 'ORL C,F3', 'AJMP 4E', 'MOV C,F3', 'INC DPTR', 'MUL AB', 'MOV @R0,7A', 'MOV @R1,7A', 'MOV R0,7A', 'MOV R1,7A', 'MOV R2,7A', 'MOV R3,7A', 'MOV R4,7A', 'MOV R5,7A', 'MOV R6,7A', 'MOV R7,7A', 'ANL C,F3', 'ACALL 4E', 'CPL F3', 'CPL C', 'CJNE A,#25,4E', 'CJNE A,7A,4E', 'CJNE @R0,#25,4E', 'CJNE @R1,#25,4E', 'CJNE R0,#25,4E', 'CJNE R1,#25,4E', 'CJNE R2,#25,4E', 'CJNE R3,#25,4E', 'CJNE R4,#25,4E', 'CJNE R5,#25,4E', 'CJNE R6,#25,4E', 'CJNE R7,#25,4E', 'PUSH 7A', 'AJMP 4E', 'CLR F3', 'CLR C', 'SWAP A', 'XCH A,7A', 'XCH A,@R0', 'XCH A,@R1', 'XCH A,R0', 'XCH A,R1', 'XCH A,R2', 'XCH A,R3', 'XCH A,R4', 'XCH A,R5', 'XCH A,R6', 'XCH A,R7', 'POP 7A', 'ACALL 4E', 'SETB F3', 'SETB C', 'DA A', 'DJNZ 7A,4E', 'XCHD A,@R0', 'XCHD A,@R1', 'DJNZ R0,4E', 'DJNZ R1,4E', 'DJNZ R2,4E', 'DJNZ R3,4E', 'DJNZ R4,4E', 'DJNZ R5,4E', 'DJNZ R6,4E', 'DJNZ R7,4E', 'MOVX A,@DPTR', 'AJMP 4E', 'MOVX A,@R0', 'MOVX A,@R1', 'CLR A', 'MOV A,7A', 'MOV A,@R0', 'MOV A,@R1', 'MOV A,R0', 'MOV A,R1', 'MOV A,R2', 'MOV A,R3', 'MOV A,R4', 'MOV A,R5', 'MOV A,R6', 'MOV A,R7', 'MOVX @DPTR,A', 'ACALL 4E', 'MOVX @R0,A', 'MOVX @R1,A', 'CPL A', 'MOV 7A,A', 'MOV @R0,A', 'MOV @R1,A', 'MOV R0,A', 'MOV R1,A', 'MOV R2,A', 'MOV R3,A', 'MOV R4,A', 'MOV R5,A', 'MOV R6,A', 'MOV R7,A']
@@ -150,8 +168,19 @@ ainstr15 = 'movx @DPTR,A'
 ainstr16 = 'mov DPTR,#0e321'
 ainstr17 = 'MOV r1,DPH'
 ainstr18 = 'SJMP label'
-allinstrlist = ['NOP', 'AJMP 4E', 'LJMP 4E,2E', 'sameer:  MOV A,B', 'SJMP sameer', 'label : MOV DPTR,#e231', 'MOV r1,DPH', 'SJMP label']
+allinstrlist = ['NOP', 'SJMP sameer', 'sameer:  MOV A,B', 'mov a,r1','sjmp sameer']
 
-#for ainstr in allinstrlist:
-#	opcode += decode(ainstr)
-#print opcode, label_list, label_dict
+def decoderinst(asm_code_list):
+	opcode = []
+	count = 0
+	for ainstr in asm_code_list:
+		if (asm_code_list[count]==''):
+			pass
+		else:
+			opcode += decode(ainstr,opcode,len(opcode),count+1)
+		if UC.flag == 1:
+			break		
+		count += 1
+	print label_dict
+	return opcode
+#print opcode, label_dict
