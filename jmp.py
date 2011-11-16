@@ -131,12 +131,7 @@ def OP_80(pcntr):
 	"""SJMP 2 byte instruction with one byte of offset to PC"""
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
-	if UC.offcheck == 1:
-		temp = UC.hex2dec(offset)
-		print temp
-		pcntr=pcntr+UC.hex2dec(offset)
-	else:
-		pcntr=pcntr+UC.hex2dec(offset)-256
+	pcntr=UC.hex2dec(offset)
 	return pcntr
 
 def OP_B4(pcntr):

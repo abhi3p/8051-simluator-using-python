@@ -138,7 +138,7 @@ def decode(instruction,opcode,lenopcode,count):
 					label_dict[instsplit[n]] = UC.dec2hex(lenopcode+1)
 					temp2.append(label_dict[instsplit[n]])
 					UC.logcnt = UC.logcnt+1
-					UC.log[UC.logcnt] =	"Error typing address " + instsplit[n] + " in line %d" %(count)
+					UC.log[UC.logcnt] =	"WARNING: " + instsplit[n] + " is label in line %d?" %(count)
 
 		opctemp += [opc_dict[temp]] + temp2
 		return opctemp
