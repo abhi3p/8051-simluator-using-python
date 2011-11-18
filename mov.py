@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from Baseclass import *
-from pylab import *
 
 def OP_74(pcntr):
 	""" MOV A, #data"""

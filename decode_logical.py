@@ -1,6 +1,5 @@
 #!/usr/bin/python 
 from Baseclass import *
-from pylab import *
 
 ####################### AND OPerations #############################
 ## ANL(AND Logical)
