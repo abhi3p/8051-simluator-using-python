@@ -87,7 +87,7 @@ def OP_40(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.PSW[7])==1:
-	    pcntr=pcntr+UC.hex2dec(offset)
+	    pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -97,7 +97,7 @@ def OP_50(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.PSW[7])==0:
-	    pcntr=pcntr+UC.hex2dec(offset)
+	    pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -107,7 +107,7 @@ def OP_60(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.A)==0:
-	    pcntr=pcntr+UC.hex2dec(offset)
+	    pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -117,7 +117,7 @@ def OP_70(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.A)!=0:
-	    pcntr=pcntr+UC.hex2dec(offset)
+	    pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -141,7 +141,7 @@ def OP_B4(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.A)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -153,7 +153,7 @@ def OP_B5(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.A)!=UC.hex2dec(UC.ROM[adr_lower]):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -165,7 +165,7 @@ def OP_B6(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(ROM[UC.R0])!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -177,7 +177,7 @@ def OP_B7(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(ROM[UC.R1])!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -189,7 +189,7 @@ def OP_B8(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R0)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -201,7 +201,7 @@ def OP_B9(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R1)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -213,7 +213,7 @@ def OP_BA(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R2)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -225,7 +225,7 @@ def OP_BB(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R3)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -237,7 +237,7 @@ def OP_BC(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R4)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -249,7 +249,7 @@ def OP_BD(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R5)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -261,7 +261,7 @@ def OP_BE(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R6)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -273,7 +273,7 @@ def OP_BF(pcntr):
 	pcntr=pcntr+1
 	offset=UC.ROM[pcntr]
 	if UC.hex2dec(UC.R7)!=UC.hex2dec(immed_data):
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -287,7 +287,7 @@ def OP_D5(pcntr):
 	dec_data=UC.hex2dec(UC.ROM[addr])-1
 	UC.ROM[addr]=UC.dec2hex(dec_data)
 	if UC.hex2dec(UC.ROM[addr])!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -299,7 +299,7 @@ def OP_D8(pcntr):
 	decr0=UC.hex2dec(UC.R0)-1
 	UC.R0=UC.dec2hex(decr0)
 	if UC.hex2dec(UC.R0)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -311,7 +311,7 @@ def OP_D9(pcntr):
 	decr1=UC.hex2dec(UC.R1)-1
 	UC.R1=UC.dec2hex(decr1)
 	if UC.hex2dec(UC.R1)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -335,7 +335,7 @@ def OP_DB(pcntr):
 	decr3=UC.hex2dec(UC.R3)-1
 	UC.R3=UC.dec2hex(decr3)
 	if UC.hex2dec(UC.R3)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -347,7 +347,7 @@ def OP_DC(pcntr):
 	decr4=UC.hex2dec(UC.R4)-1
 	UC.R4=UC.dec2hex(decr4)
 	if UC.hex2dec(UC.R4)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -359,7 +359,7 @@ def OP_DD(pcntr):
 	decr5=UC.hex2dec(UC.R5)-1
 	UC.R5=UC.dec2hex(decr5)
 	if UC.hex2dec(UC.R5)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -371,7 +371,7 @@ def OP_DE(pcntr):
 	decr6=UC.hex2dec(UC.R6)-1
 	UC.R6=UC.dec2hex(decr6)
 	if UC.hex2dec(UC.R6)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr
@@ -383,7 +383,7 @@ def OP_DF(pcntr):
 	decr7=UC.hex2dec(UC.R7)-1
 	UC.R7=UC.dec2hex(decr7)
 	if UC.hex2dec(UC.R7)!=0:
-            pcntr=pcntr+UC.hex2dec(offset)
+            pcntr=UC.hex2dec(offset)
 	else:
 	    pcntr=pcntr+1
 	return pcntr

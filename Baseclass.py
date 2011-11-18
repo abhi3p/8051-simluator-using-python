@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 class BaseClass8051:
 	"""The base class of 8051 which consists of all common data types and functions used for the simulator"""
 	ROM=[hex(0)]*4096
@@ -19,7 +18,6 @@ class BaseClass8051:
 	log=['0']*4096
 	logcnt=-1
 	flag=0
-#	offcheck=0
 	PSW=bin(0)+'0000000'
 	PC=0
 	DPTR=0
