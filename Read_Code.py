@@ -1,7 +1,6 @@
 #!/usr/bin/python 
 from decoder import *
 from Baseclass import *
-from pylab import *
 
 def Read_Code(filename):
 	f=open(filename)

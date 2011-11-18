@@ -2,6 +2,7 @@
 from Baseclass import *
 
 def setpsw(n):
+	#--- set PSW nth bits ---#
 	temp = UC.hex2dec(UC.bin2hex(UC.PSW[2:]))
 	if n == 0 and UC.PSW[9] == '0':
 		temp += 1
@@ -22,6 +23,7 @@ def setpsw(n):
 	UC.PSW = '0b'+UC.hex2bin(UC.dec2hex(int(temp)))
 
 def resetpsw(n):
+	#--- reset PSW nth bits ---#
 	temp = UC.hex2dec(UC.bin2hex(UC.PSW[2:]))
 	if n == 0 and UC.PSW[9] == '1':
 		temp -= 1
@@ -42,6 +44,7 @@ def resetpsw(n):
 	UC.PSW = '0b'+UC.hex2bin(UC.dec2hex(int(temp)))
 
 def cpl2(value):
+	#--- Give 2's Compliment ---#
 	temp1 = ''
 	temp2 = UC.hex2bin(value)
 	for n in range(0,len(temp2)):

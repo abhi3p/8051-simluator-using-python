@@ -21,7 +21,7 @@ def addacc(lsb,msb):
 def OP_04(pcntr):
 	#--- INC A ---#
 	UC.A = UC.incr(UC.A,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_05(pcntr):
@@ -49,55 +49,55 @@ def OP_07(pcntr):
 def OP_08(pcntr):
 	#--- INC R0 ---#
 	UC.R0 = UC.incr(UC.R0,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_09(pcntr):
 	#--- INC R1 ---#
 	UC.R1 = UC.incr(UC.R1,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_0A(pcntr):
 	#--- INC R2 ---#
 	UC.R2 = UC.incr(UC.R2,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_0B(pcntr):
 	#--- INC R3 ---#
 	UC.R3 = UC.incr(UC.R3,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_0C(pcntr):
 	#--- INC R4 ---#
 	UC.R4 = UC.incr(UC.R4,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_0D(pcntr):
 	#--- INC R5 ---#
 	UC.R5 = UC.incr(UC.R5,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_0E(pcntr):
 	#--- INC R6 ---#
 	UC.R6 = UC.incr(UC.R6,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_0F(pcntr):
 	#--- INC R7 ---#
 	UC.R7 = UC.incr(UC.R7,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_14(pcntr):
 	#--- DEC A ---#
 	UC.A = UC.decr(UC.A,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_15(pcntr):
@@ -125,49 +125,49 @@ def OP_17(pcntr):
 def OP_18(pcntr):
 	#--- DEC R0 ---#
 	UC.R0 = UC.decr(UC.R0,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_19(pcntr):
 	#--- DEC R1 ---#
 	UC.R1 = UC.decr(UC.R1,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_1A(pcntr):
 	#--- DEC R2 ---#
 	UC.R2 = UC.decr(UC.R2,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_1B(pcntr):
 	#--- DEC R3 ---#
 	UC.R3 = UC.decr(UC.R3,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_1C(pcntr):
 	#--- DEC R4 ---#
 	UC.R4 = UC.decr(UC.R4,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_1D(pcntr):
 	#--- DEC R5 ---#
 	UC.R5 = UC.decr(UC.R5,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_1E(pcntr):
 	#--- DEC R6 ---#
 	UC.R6 = UC.decr(UC.R6,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_1F(pcntr):
 	#--- DEC R7 ---#
 	UC.R7 = UC.decr(UC.R7,1)
-	pcntr = pcntr + 1
+	pcntr += 1
 	return pcntr
 
 def OP_24(pcntr):

@@ -1,7 +1,7 @@
 from Baseclass import *
 from decoder import *
 
-####### This file is used to file writing operation for GUI purpose #########
+####--- This file is used to file writing operation for GUI purpose ---#####
 def Write_files():
 	f=open('register.txt','w')
 	f.write('Accumulator A \t = \t')
@@ -67,7 +67,3 @@ def Write_files():
 		f.write(UC.log[i])
 		f.write('\n')
 	f.close()
-
-
-
-

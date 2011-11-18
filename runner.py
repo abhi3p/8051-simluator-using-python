@@ -1,5 +1,4 @@
 #!/usr/bin/python 
-from pylab import *
 from Baseclass import *
 from mov import *
 from arithmetics import *

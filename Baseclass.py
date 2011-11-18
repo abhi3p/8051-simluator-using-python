@@ -1,5 +1,4 @@
 #!/usr/bin/python
-from pylab import *
 
 
 class BaseClass8051:
