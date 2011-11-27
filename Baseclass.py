@@ -74,6 +74,3 @@ class BaseClass8051:
 		return hexa
 
 UC = BaseClass8051()
-
-
-
