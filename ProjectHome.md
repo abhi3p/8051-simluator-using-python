@@ -1,0 +1,1 @@
+Our goal is to create a python based 8051 simulator, which can provide the users a platform to test their 8051 codes prior to hardware implementation. It will provide the users ability to debug their codes in a very similar 8051 hardware scenario and help them to modify their codes at an early stage of project development.
